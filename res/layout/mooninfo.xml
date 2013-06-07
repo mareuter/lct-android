@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/obsdate_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/date_label_text"
+        android:textSize="20sp"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip" />
+    <TextView
+        android:id="@+id/obstime_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/time_label_text"
+        android:textSize="20sp"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip" />
+    <TextView
+        android:id="@+id/moon_phase_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/moon_phase_text"
+        android:textSize="20sp"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip" />
+        <TextView
+        android:id="@+id/moon_age_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/moon_age_text"
+        android:textSize="20sp"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip" />
+    <TextView
+        android:id="@+id/moon_illum_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/moon_illum_text"
+        android:textSize="20sp"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip" />
+    <TextView
+        android:id="@+id/moon_colong_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/moon_colong_text"
+        android:textSize="20sp"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip" />
+</LinearLayout>

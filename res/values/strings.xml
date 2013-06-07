@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lunar Club Tools</string>
+    <string name="date_label_text">Current Date:</string>
+    <string name="time_label_text">Current Time:</string>
+    <string name="moon_age_text">Moon Age:</string>
+    <string name="moon_phase_text">Moon Phase:</string>
+    <string name="moon_illum_text">Moon Illumination:</string>
+    <string name="moon_colong_text">Moon Colongitude:</string>
+    <string name="about_label">About</string>
+    <string name="about_shortcut">a</string>
+    <string name="about_title">About Lunar Club Tools</string>
+    <string name="about_text">\
+        <p>Lunar Club Tools is a program for determining what lunar features 
+        are visible based on the current selenographic colongitude. The 
+        features are taken from the observing lists of the Lunar and Lunar II 
+        clubs from The Astronomical League (http://www.astroleague.org). 
+        For more information on this program see .</p>
+    </string>
+    <string name="empty">No features currently visible!</string>
+</resources>
