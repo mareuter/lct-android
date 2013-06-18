@@ -7,10 +7,12 @@ import com.mhuss.AstroLib.Astro;
 import com.typeiisoft.lct.db.DataBaseHelper;
 import com.typeiisoft.lct.utils.AppPreferences;
 
+import android.app.ActionBar;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,6 +30,9 @@ public class LctActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        final ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(false);
+
         Resources res = getResources(); // Resource object to get Drawables
         TabHost tabHost = getTabHost();  // The activity TabHost
         TabHost.TabSpec spec;  // Reusable TabSpec for each tab
@@ -90,10 +95,9 @@ public class LctActivity extends TabActivity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-    	super.onCreateOptionsMenu(menu);
     	MenuInflater inflater = getMenuInflater();
     	inflater.inflate(R.menu.menu, menu);
-    	return true;
+    	return super.onCreateOptionsMenu(menu);
     }
     
     @Override
@@ -102,7 +106,9 @@ public class LctActivity extends TabActivity {
     	case R.id.about:
     		startActivity(new Intent(this, About.class));
     		return true;
+    	default:
+    		return super.onOptionsItemSelected(item);
     	}
-    	return false;
+    	
     }
 }
