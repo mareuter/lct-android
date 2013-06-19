@@ -27,8 +27,6 @@ import android.widget.Toast;
 public class LunarTwoFeaturesFragment extends ListFragment {
 	/** Logging identifier. */
 	private final static String TAG = "LunarTwoFeaturesFragment";
-	/** View for the fragment. */
-	private View view;
 	
 	/**
 	 * This function does the actual view creation. It also sets up a long 
@@ -40,12 +38,17 @@ public class LunarTwoFeaturesFragment extends ListFragment {
 		Log.i(TAG, "Creating tab.");
 
 		// Inflate the layout for this fragment
-    	this.view = inflater.inflate(R.layout.l2features, container, false);
-
-    	DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
+    	return inflater.inflate(R.layout.l2features, container, false);
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		
+		DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
         L2FeatureAdapter adapter = new L2FeatureAdapter(this.getActivity().getApplicationContext(), 
         		(ArrayList<LunarFeature>) moonDB.getLunarTwoFeatures());
-        setListAdapter(adapter);
+        this.setListAdapter(adapter);
         
         // Setup the click listener to display more information
         OnItemClickListener listener = new OnItemClickListener() {
@@ -58,7 +61,5 @@ public class LunarTwoFeaturesFragment extends ListFragment {
 			}
 		};
 		this.getListView().setOnItemClickListener(listener);
-		
-		return this.view;
 	}
 }
