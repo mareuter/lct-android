@@ -76,12 +76,14 @@ public class LctActivity extends Activity {
         		.setText(R.string.lunar_club_tab)
         		.setTabListener(new MainTabListener<LunarClubFeaturesFragment>(
         				this, "lunarclub", LunarClubFeaturesFragment.class));
-
+        actionBar.addTab(tab);
+        
         tab = actionBar.newTab()
         		.setText(R.string.lunar2_club_tab)
         		.setTabListener(new MainTabListener<LunarTwoFeaturesFragment>(
         				this, "lunar2club", LunarTwoFeaturesFragment.class));
-
+        actionBar.addTab(tab);
+        
         //moonDB.close();
     }
     
