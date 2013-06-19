@@ -19,10 +19,10 @@ public class AppPreferences {
 	
 	/**
 	 * This is the class constructor.
-	 * @param context : Application context.
+	 * @param activity : Associated activity
 	 */
-	public AppPreferences(Context context) {
-		this.sharedPrefs = context.getSharedPreferences(APP_SHARED_PREFS, 
+	public AppPreferences(Activity activity) {
+		this.sharedPrefs = activity.getSharedPreferences(APP_SHARED_PREFS, 
 				Activity.MODE_PRIVATE);
 		this.prefsEditor = this.sharedPrefs.edit();
 	}

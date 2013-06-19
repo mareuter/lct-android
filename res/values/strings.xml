@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Lunar Club Tools</string>
+    <string name="moon_info_tab">Moon Info</string>
+    <string name="lunar_club_tab">Lunar Club</string>
+    <string name="lunar2_club_tab">Lunar II Club</string>
     <string name="date_label_text">Current Date:</string>
     <string name="time_label_text">Current Time:</string>
     <string name="moon_age_text">Moon Age:</string>

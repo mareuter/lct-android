@@ -8,7 +8,8 @@ import com.typeiisoft.lct.db.DataBaseHelper;
 import com.typeiisoft.lct.utils.AppPreferences;
 
 import android.app.ActionBar;
-import android.app.TabActivity;
+import android.app.ActionBar.Tab;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.StateListDrawable;
@@ -19,7 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TabHost;
 
-public class LctActivity extends TabActivity {
+public class LctActivity extends Activity {
 	/** The application preferences object. */
 	private AppPreferences appPrefs;
 	private static final String TAG = "LctActivity";
@@ -28,22 +29,19 @@ public class LctActivity extends TabActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
         
+        // Set up the ActionBar
         final ActionBar actionBar = getActionBar();
-        actionBar.setHomeButtonEnabled(false);
-
-        Resources res = getResources(); // Resource object to get Drawables
-        TabHost tabHost = getTabHost();  // The activity TabHost
-        TabHost.TabSpec spec;  // Reusable TabSpec for each tab
-        Intent intent;  // Reusable Intent for each tab
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(false);
 
         // Set the observation date and time into the shared preferences.
-    	this.appPrefs = new AppPreferences(this.getApplicationContext());
+    	this.appPrefs = new AppPreferences(this);
     	Calendar now = Calendar.getInstance();
     	int offset = now.getTimeZone().getOffset(now.getTimeInMillis()) / Astro.MILLISECONDS_PER_HOUR;
 		// Set time to UTC, offset will allow calc of local time later.
 		now.add(Calendar.HOUR_OF_DAY, -offset);
+		
 		this.appPrefs.setDateTime(now.get(Calendar.DATE), 
 				now.get(Calendar.MONTH)+1, now.get(Calendar.YEAR), 
 				now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), 
@@ -67,9 +65,13 @@ public class LctActivity extends TabActivity {
         }
         // DB should now be open and ready
         */
-        // Create an Intent to launch an Activity for the tab (to be reused)
-        intent = new Intent().setClass(this, MoonInfoActivity.class);
-
+        // Create a tab to set a Fragment (to be reused)
+        Tab tab = actionBar.newTab()
+        		.setText(R.string.moon_info_tab)
+        		.setTabListener(new MainTabListener<MoonInfoFragment>(
+        				this, "mooninfo", MoonInfoFragment.class));
+        actionBar.addTab(tab);
+        		
         // Initialize a TabSpec for each tab and add it to the TabHost
         spec = tabHost.newTabSpec("mooninfo").setIndicator("Moon Info",
                           new StateListDrawable())

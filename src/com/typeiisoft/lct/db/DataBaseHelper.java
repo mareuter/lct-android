@@ -13,7 +13,7 @@ import com.typeiisoft.lct.features.LunarFeature;
 import com.typeiisoft.lct.utils.AppPreferences;
 import com.typeiisoft.lct.utils.MoonInfo;
 
-import android.content.Context;
+import android.app.Activity;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,7 +33,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "moon.db";
     private static String DB_TABLE = "Features";
     private SQLiteDatabase myDataBase; 
-    private final Context myContext;
+    private final Activity myActivity;
     /** Enum that holds the database fields for integer comparison. */
     private enum DbFields {
     	_id, NAME, DIAMETER, LATITUDE, LONGITUDE, DELTA_LAT, DELTA_LONG, TYPE, 
@@ -44,12 +44,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      * Constructor
      * Takes and keeps a reference of the passed context in order to access to 
      * the application assets and resources.
-     * @param context
+     * @param activity
      */
-    public DataBaseHelper(Context context) {
+    public DataBaseHelper(Activity activity) {
  
-    	super(context, DB_NAME, null, 1);
-        this.myContext = context;
+    	super(activity, DB_NAME, null, 1);
+        this.myActivity = activity;
     }	
 
     /**
@@ -104,7 +104,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      * */
     private void copyDataBase() throws IOException{
     	// Open your local db as the input stream
-    	InputStream myInput = myContext.getAssets().open(DB_NAME);
+    	InputStream myInput = myActivity.getAssets().open(DB_NAME);
  
     	// Path to the just created empty db
     	String outFileName = DB_PATH + DB_NAME;
@@ -211,7 +211,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	 * @return : The given feature list.
 	 */
 	private List<LunarFeature> getFeatureList(String clubName) {
-		AppPreferences appPrefs = new AppPreferences(this.myContext);
+		AppPreferences appPrefs = new AppPreferences(this.myActivity);
 		MoonInfo moonInfo = new MoonInfo(appPrefs.getDateTime());
 		Log.i(TAG, "MoonInfo: " + moonInfo.toString());
 		

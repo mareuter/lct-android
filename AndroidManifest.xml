@@ -21,9 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MoonInfoActivity">
-        </activity>
-        <activity
             android:name=".LunarClubFeaturesActivity">
         </activity>
                 <activity
