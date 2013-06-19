@@ -20,10 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LunarClubFeaturesActivity">
-        </activity>
-                <activity
+                  <activity
             android:name=".LunarTwoFeaturesActivity">
         </activity>
         <activity

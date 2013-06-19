@@ -72,18 +72,10 @@ public class LctActivity extends Activity {
         				this, "mooninfo", MoonInfoFragment.class));
         actionBar.addTab(tab);
         		
-        // Initialize a TabSpec for each tab and add it to the TabHost
-        spec = tabHost.newTabSpec("mooninfo").setIndicator("Moon Info",
-                          new StateListDrawable())
-                      .setContent(intent);
-        tabHost.addTab(spec);
-
-        // Do the same for the other tabs
-        intent = new Intent().setClass(this, LunarClubFeaturesActivity.class);
-        spec = tabHost.newTabSpec("lunar_club_features").setIndicator("LC Features",
-                          new StateListDrawable())
-                      .setContent(intent);
-        tabHost.addTab(spec);
+        tab = actionBar.newTab()
+        		.setText(R.string.lunar_club_tab)
+        		.setTabListener(new MainTabListener<LunarClubFeaturesFragment>(
+        				this, "lunarclub", LunarClubFeaturesFragment.class));
         
         intent = new Intent().setClass(this, LunarTwoFeaturesActivity.class);
         spec = tabHost.newTabSpec("lunar_two_features").setIndicator("LII Features",

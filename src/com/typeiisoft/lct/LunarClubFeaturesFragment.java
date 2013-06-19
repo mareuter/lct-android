@@ -5,27 +5,34 @@ import java.util.ArrayList;
 import com.typeiisoft.lct.db.DataBaseHelper;
 import com.typeiisoft.lct.features.LcFeatureAdapter;
 
-import android.app.ExpandableListActivity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
-public class LunarClubFeaturesActivity extends ExpandableListActivity {
+public class LunarClubFeaturesFragment extends Fragment {
 	/** Logging identifier. */
-	private static final String TAG = "LunarClubFeaturesActivity";
+	private static final String TAG = "LunarClubFeaturesFragment";
+	/** View for the fragment. */
+	private View view;
 	
 	/**
 	 * This function creates the Lunar Club features view.
 	 */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-        setContentView(R.layout.lcfeatures);
-        DataBaseHelper moonDB = new DataBaseHelper(this);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+
+		// Inflate the layout for this fragment
+    	this.view = inflater.inflate(R.layout.lcfeatures, container, false);
+        DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
         
+        /*
         ArrayList<String> categories = new ArrayList<String>();
         categories.add(new String("Naked Eye"));
         categories.add(new String("Binocular"));
@@ -45,11 +52,13 @@ public class LunarClubFeaturesActivity extends ExpandableListActivity {
 					Log.e(TAG, "Can't get object");
 				}
 				String text = obj.toString();
-				Toast.makeText(LunarClubFeaturesActivity.this, text, 
+				Toast.makeText(LunarClubFeaturesFragment.this, text, 
 						Toast.LENGTH_LONG).show();
 				return true;
 			}
 		};
 		this.getExpandableListView().setOnChildClickListener(clickListener);
+		*/
+		return view;
 	}
 }
