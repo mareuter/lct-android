@@ -6,13 +6,14 @@ import com.typeiisoft.lct.db.DataBaseHelper;
 import com.typeiisoft.lct.features.L2FeatureAdapter;
 import com.typeiisoft.lct.features.LunarFeature;
 
-import android.app.ListActivity;
+import android.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Toast;
 
 /**
@@ -23,21 +24,26 @@ import android.widget.Toast;
  * @author Michael Reuter
  *
  */
-public class LunarTwoFeaturesActivity extends ListActivity {
+public class LunarTwoFeaturesFragment extends ListFragment {
 	/** Logging identifier. */
-	private final static String TAG = "LunarTwoFeaturesActivity";
+	private final static String TAG = "LunarTwoFeaturesFragment";
+	/** View for the fragment. */
+	private View view;
 	
 	/**
 	 * This function does the actual view creation. It also sets up a long 
 	 * click listener to show more information about the feature.
 	 */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
 		Log.i(TAG, "Creating tab.");
-		super.onCreate(savedInstanceState);
-        setContentView(R.layout.l2features);
-        DataBaseHelper moonDB = new DataBaseHelper(this);
-        L2FeatureAdapter adapter = new L2FeatureAdapter(this, 
+
+		// Inflate the layout for this fragment
+    	this.view = inflater.inflate(R.layout.l2features, container, false);
+
+    	DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
+        L2FeatureAdapter adapter = new L2FeatureAdapter(this.getActivity().getApplicationContext(), 
         		(ArrayList<LunarFeature>) moonDB.getLunarTwoFeatures());
         setListAdapter(adapter);
         
@@ -47,10 +53,12 @@ public class LunarTwoFeaturesActivity extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view, 
 					int position, long id) {
 				String text = parent.getItemAtPosition(position).toString();
-				Toast.makeText(LunarTwoFeaturesActivity.this, text, 
+				Toast.makeText(LunarTwoFeaturesFragment.this.getActivity().getApplicationContext(), text, 
 						Toast.LENGTH_LONG).show();
 			}
 		};
 		this.getListView().setOnItemClickListener(listener);
+		
+		return this.view;
 	}
 }
