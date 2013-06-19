@@ -33,7 +33,6 @@ public class LctActivity extends Activity {
         // Set up the ActionBar
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayShowTitleEnabled(false);
 
         // Set the observation date and time into the shared preferences.
     	this.appPrefs = new AppPreferences(this);
