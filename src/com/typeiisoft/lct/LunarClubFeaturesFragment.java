@@ -59,6 +59,6 @@ public class LunarClubFeaturesFragment extends Fragment {
 		};
 		this.getExpandableListView().setOnChildClickListener(clickListener);
 		*/
-		return view;
+		return this.view;
 	}
 }
