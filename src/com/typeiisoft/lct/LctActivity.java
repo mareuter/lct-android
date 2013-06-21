@@ -9,18 +9,14 @@ import com.typeiisoft.lct.utils.AppPreferences;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.StateListDrawable;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TabHost;
 
-public class LctActivity extends Activity {
+public class LctActivity extends FragmentActivity {
 	/** The application preferences object. */
 	private AppPreferences appPrefs;
 	private static final String TAG = "LctActivity";
