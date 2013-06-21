@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import android.widget.Toast;
 
 /**
@@ -38,18 +39,17 @@ public class LunarTwoFeaturesFragment extends ListFragment {
 		Log.i(TAG, "Creating tab.");
 
 		// Inflate the layout for this fragment
-    	return inflater.inflate(R.layout.l2features, container, false);
-	}
-	
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		
+    	View view = inflater.inflate(R.layout.l2features, container, false);
+    	
+    	// Find the listview
+    	ListView lv = (ListView) view.findViewById(android.R.id.list);
+    	
+    	// Set the content
 		DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
         L2FeatureAdapter adapter = new L2FeatureAdapter(this.getActivity().getApplicationContext(), 
         		(ArrayList<LunarFeature>) moonDB.getLunarTwoFeatures());
-        this.setListAdapter(adapter);
-        
+    	this.setListAdapter(adapter);
+    	
         // Setup the click listener to display more information
         OnItemClickListener listener = new OnItemClickListener() {
 			@Override
@@ -60,6 +60,8 @@ public class LunarTwoFeaturesFragment extends ListFragment {
 						Toast.LENGTH_LONG).show();
 			}
 		};
-		this.getListView().setOnItemClickListener(listener);
+		lv.setOnItemClickListener(listener);
+    	
+    	return view;
 	}
 }
