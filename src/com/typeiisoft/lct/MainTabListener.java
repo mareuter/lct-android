@@ -23,31 +23,34 @@ public final class MainTabListener<T extends Fragment> implements TabListener {
    }
 
    /* The following are each of the ActionBar.TabListener callbacks */
-   
-	public void onTabReselected(Tab tab, android.app.FragmentTransaction ft) {
-	    // User selected the already selected tab. Usually do nothing.
-	}
 
-	public void onTabSelected(Tab tab, android.app.FragmentTransaction ft) {
-		android.support.v4.app.FragmentTransaction fft = mActivity.getSupportFragmentManager().beginTransaction();
-		fft.commit();
-        // Check if the fragment is already initialized
-        if (mFragment == null) {
-            // If not, instantiate and add it to the activity
-            mFragment = Fragment.instantiate(mActivity, mClass.getName());
-            fft.add(android.R.id.content, mFragment, mTag);
-        } else {
-            // If it exists, simply attach it in order to show it
-            fft.attach(mFragment);
-        }
-    }
+   @Override
+   public void onTabReselected(Tab tab, android.app.FragmentTransaction ft) {
+	   // User selected the already selected tab. Usually do nothing.
+   }
 
-	public void onTabUnselected(Tab tab, android.app.FragmentTransaction ft) {
-		android.support.v4.app.FragmentTransaction fft = mActivity.getSupportFragmentManager().beginTransaction();
-    	fft.commit();
-        if (mFragment != null) {
-            // Detach the fragment, because another one is being attached
-            fft.detach(mFragment);
-        }
-    }
+   @Override
+   public void onTabSelected(Tab tab, android.app.FragmentTransaction ft) {
+	   android.support.v4.app.FragmentTransaction fft = mActivity.getSupportFragmentManager().beginTransaction();
+	   fft.commit();
+	   // Check if the fragment is already initialized
+	   if (mFragment == null) {
+		   // If not, instantiate and add it to the activity
+		   mFragment = Fragment.instantiate(mActivity, mClass.getName());
+		   fft.add(android.R.id.content, mFragment, mTag);
+	   } else {
+		   // If it exists, simply attach it in order to show it
+		   fft.attach(mFragment);
+	   }
+   }
+
+   @Override
+   public void onTabUnselected(Tab tab, android.app.FragmentTransaction ft) {
+	   android.support.v4.app.FragmentTransaction fft = mActivity.getSupportFragmentManager().beginTransaction();
+	   fft.commit();
+	   if (mFragment != null) {
+		   // Detach the fragment, because another one is being attached
+		   fft.detach(mFragment);
+	   }
+   }
 }
