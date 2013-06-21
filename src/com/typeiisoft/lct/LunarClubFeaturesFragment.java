@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import com.typeiisoft.lct.db.DataBaseHelper;
 import com.typeiisoft.lct.features.LcFeatureAdapter;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +16,27 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
-public class LunarClubFeaturesFragment extends Fragment {
+public class LunarClubFeaturesFragment extends ListFragment {
 	/** Logging identifier. */
 	private static final String TAG = "LunarClubFeaturesFragment";
 	/** View for the fragment. */
 	private View view;
+	/** Holder for the current feature type */
+	private String currentType;
 	
+	/**
+	 * Function that sets initial information into fragment.
+	 */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+ 
+        /** Getting the arguments to the Bundle object */
+        Bundle data = getArguments();
+        
+        this.currentType = data.getString("feature_type");
+    }
+
 	/**
 	 * This function creates the Lunar Club features view.
 	 */

@@ -1,5 +1,6 @@
 package com.typeiisoft.lct;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -7,6 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class LunarClubPagerAdapter extends FragmentPagerAdapter {
 	/** Number of tabs for the display. */
 	private final static int NUM_TABS = 3;
+	/** The set of titles for the Lunar Club tabs */
+	private String[] tabTitles = {"Naked Eye", "Binocular", "Telescope"};
 	
 	/**
 	 * Class constructor.
@@ -23,7 +26,11 @@ public class LunarClubPagerAdapter extends FragmentPagerAdapter {
 	 */
 	@Override
 	public Fragment getItem(int arg0) {
-		return null;
+		LunarClubFeaturesFragment lcfFragment = new LunarClubFeaturesFragment();
+		Bundle data = new Bundle();
+		data.putString("feature_type", this.tabTitles[arg0]);
+		lcfFragment.setArguments(data);
+		return lcfFragment;
 	}
 
 	/**
@@ -34,5 +41,15 @@ public class LunarClubPagerAdapter extends FragmentPagerAdapter {
 	public int getCount() {
 		return NUM_TABS;
 	}
+
+	/**
+	 * Function to put a title on the current page.
+	 * @param position : The index for the title.
+	 * @return The title for the page.
+	 */
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return this.tabTitles[position];
+    }
 
 }
