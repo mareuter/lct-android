@@ -153,44 +153,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // to you to create adapters for your views.
 
 	/**
-	 * This function gets the Lunar Club feature list as a set of three 
-	 * lists based on the target type.
-	 * @return : The list of lists of Lunar Club features.
+	 * This function gets the Lunar Club feature list based on the target type.
+	 * @return : The lists of Lunar Club features.
 	 */
-	public ArrayList<ArrayList<LunarFeature>> getLunarClubFeatures() {
-		ArrayList<LunarFeature> tmp = (ArrayList<LunarFeature>)this.getFeatureList("Lunar");
+	public ArrayList<LunarFeature> getLunarClubFeatures(String targetType) {
+		List<LunarFeature> tmp = this.getFeatureList("Lunar");
 		
-		// Setup three lists for the target categories.
-		ArrayList<LunarFeature> nakedEye = new ArrayList<LunarFeature>();
-		ArrayList<LunarFeature> binocular = new ArrayList<LunarFeature>();
-		ArrayList<LunarFeature> telescopic = new ArrayList<LunarFeature>();
-		String targetType;
+		// Setup list for the target category.
+		ArrayList<LunarFeature> features = new ArrayList<LunarFeature>();
+
+		String lTargetType;
 		for (LunarFeature l : tmp) {
-			targetType = l.getClubType();
-			Log.i(TAG, "Target type = " + targetType);
-			if (targetType.equals(new String("Naked Eye"))) {
-				nakedEye.add(l);
-			}
-			if (targetType.equals(new String("Binocular"))) {
-				binocular.add(l);
-			}
-			if (targetType.equals(new String("Telescopic"))) {
-				telescopic.add(l);
+			lTargetType = l.getClubType();
+			Log.i(TAG, "Target type = " + lTargetType);
+			if (lTargetType.equals(targetType)) {
+				features.add(l);
 			}
 		}
 		
-		Log.i(TAG, "Naked Eye = " + nakedEye.size());
-		Log.i(TAG, "Binocular = " + binocular.size());
-		Log.i(TAG, "Telescopic = " + telescopic.size());
-		
-		Collections.sort(nakedEye, new FeatureComparator());
-		Collections.sort(binocular, new FeatureComparator());
-		Collections.sort(telescopic, new FeatureComparator());
-		
-		ArrayList<ArrayList<LunarFeature>> features = new ArrayList<ArrayList<LunarFeature>>();
-		features.add(nakedEye);
-		features.add(binocular);
-		features.add(telescopic);
+		Log.i(TAG, targetType + " = " + features.size());
+		Collections.sort(features, new FeatureComparator());
 		return features;
 	}
 	
