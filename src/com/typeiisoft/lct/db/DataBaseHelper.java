@@ -165,7 +165,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		String lTargetType;
 		for (LunarFeature l : tmp) {
 			lTargetType = l.getClubType();
-			Log.i(TAG, "Target type = " + lTargetType);
+			Log.d(TAG, "Target type = " + lTargetType);
 			if (lTargetType.equals(targetType)) {
 				features.add(l);
 			}

@@ -1,11 +1,12 @@
 package com.typeiisoft.lct;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
-public class LunarClubPagerAdapter extends FragmentPagerAdapter {
+public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
+	private final static String TAG = "LunarClubPagerAdapter";
 	/** Number of tabs for the display. */
 	private final static int NUM_TABS = 3;
 	/** The set of titles for the Lunar Club tabs */
@@ -21,16 +22,13 @@ public class LunarClubPagerAdapter extends FragmentPagerAdapter {
 
 	/**
 	 * Function to retrieve a fragment at a given index.
-	 * @param arg0 : index for fragment
+	 * @param position : index for fragment
 	 * @return the fragment at the given index
 	 */
 	@Override
-	public Fragment getItem(int arg0) {
-		LunarClubFeaturesFragment lcfFragment = new LunarClubFeaturesFragment();
-		Bundle data = new Bundle();
-		data.putString("feature_type", this.tabTitles[arg0]);
-		lcfFragment.setArguments(data);
-		return lcfFragment;
+	public Fragment getItem(int position) {
+		Log.i(TAG, "Creating tab at position " + String.valueOf(position));
+		return LunarClubFeaturesFragment.newInstance(this.tabTitles[position]);
 	}
 
 	/**
@@ -51,5 +49,4 @@ public class LunarClubPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return this.tabTitles[position];
     }
-
 }

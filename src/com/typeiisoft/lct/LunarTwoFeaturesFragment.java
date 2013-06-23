@@ -40,28 +40,23 @@ public class LunarTwoFeaturesFragment extends ListFragment {
 
 		// Inflate the layout for this fragment
     	View view = inflater.inflate(R.layout.l2features, container, false);
-    	
-    	// Find the listview
-    	ListView lv = (ListView) view.findViewById(android.R.id.list);
-    	
-    	// Set the content
+
+       	// Set the content
 		DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
         L2FeatureAdapter adapter = new L2FeatureAdapter(this.getActivity().getApplicationContext(), 
         		(ArrayList<LunarFeature>) moonDB.getLunarTwoFeatures());
     	this.setListAdapter(adapter);
-    	
-        // Setup the click listener to display more information
-        OnItemClickListener listener = new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, 
-					int position, long id) {
-				String text = parent.getItemAtPosition(position).toString();
-				Toast.makeText(LunarTwoFeaturesFragment.this.getActivity().getApplicationContext(), text, 
-						Toast.LENGTH_LONG).show();
-			}
-		};
-		lv.setOnItemClickListener(listener);
-    	
+     	
     	return view;
 	}
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		String text = l.getItemAtPosition(position).toString();
+		Toast.makeText(LunarTwoFeaturesFragment.this.getActivity().getApplicationContext(), text, 
+				Toast.LENGTH_LONG).show();
+	}
+	
+	
 }

@@ -198,9 +198,9 @@ public class MoonInfo {
 	 */
 	public boolean isVisible(LunarFeature feature) {
 		double selcoLong = this.colongToLong();
-		Log.i(TAG, "SelcoLong = " + Double.toString(selcoLong));
+		Log.v(TAG, "SelcoLong = " + Double.toString(selcoLong));
 		int curTod = this.getTimeOfDay().ordinal();
-		Log.i(TAG, "CurTod = " + Integer.toString(curTod));
+		Log.v(TAG, "CurTod = " + Integer.toString(curTod));
 		
 		double minLon = feature.getLongitude() - feature.getDeltaLongitude() / 2.0;
 		double maxLon = feature.getLongitude() + feature.getDeltaLongitude() / 2.0;
