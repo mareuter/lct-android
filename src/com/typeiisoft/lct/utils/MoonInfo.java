@@ -2,6 +2,7 @@ package com.typeiisoft.lct.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import android.util.Log;
@@ -144,7 +145,7 @@ public class MoonInfo {
 	 * @return : A date string and a time string in the local timezone.
 	 */
 	public String[] obsLocalTime() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
 		StringBuffer buf = new StringBuffer(format.format(this.obsLocal.getTime()));
 		String tz = this.obsLocal.getTimeZone().getDisplayName(TimeOps.dstOffset(this.obsLocal) != 0, 
 				TimeZone.SHORT);
