@@ -40,6 +40,7 @@ public final class MainTabListener<T extends Fragment> implements TabListener {
 	   if (mFragment == null) {
 		   // If not, instantiate and add it to the activity
 		   mFragment = Fragment.instantiate(mActivity, mClass.getName());
+		   Log.i(TAG, "Adding fragment: " + mFragment.getTag());
 		   fft.add(android.R.id.content, mFragment, mTag);
 	   } else {
 		   // If it exists, simply attach it in order to show it

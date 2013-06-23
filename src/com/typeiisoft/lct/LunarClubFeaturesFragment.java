@@ -2,8 +2,6 @@ package com.typeiisoft.lct;
 
 import com.typeiisoft.lct.db.DataBaseHelper;
 import com.typeiisoft.lct.features.FeatureAdapter;
-import com.typeiisoft.lct.features.L2FeatureAdapter;
-import com.typeiisoft.lct.features.LcFeatureAdapter;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,10 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class LunarClubFeaturesFragment extends ListFragment {
 	/** Logging identifier. */
@@ -23,6 +19,11 @@ public class LunarClubFeaturesFragment extends ListFragment {
 	/** Holder for the current feature type */
 	private String currentType;
 	
+	/**
+	 * Instance constructor.
+	 * @param currType : The requested feature category.
+	 * @return : A new instance of the object with the requested category.
+	 */
 	static LunarClubFeaturesFragment newInstance(String currType) {
 		LunarClubFeaturesFragment lcf = new LunarClubFeaturesFragment();
 		Bundle data = new Bundle();
@@ -36,7 +37,6 @@ public class LunarClubFeaturesFragment extends ListFragment {
 	 */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
  
         /** Getting the arguments to the Bundle object */
@@ -53,28 +53,35 @@ public class LunarClubFeaturesFragment extends ListFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		Log.i(TAG, "Creating " + this.currentType + " tab.");
+		
 		// Inflate the layout for this fragment
-    	return inflater.inflate(R.layout.lcfeatures, container, false);
+    	View view = inflater.inflate(R.layout.features, container, false);
+    	
+    	// Set the content
+    	DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
+		FeatureAdapter adapter = new FeatureAdapter(this.getActivity().getApplicationContext(), 
+				moonDB.getLunarClubFeatures(this.currentType));
+		this.setListAdapter(adapter);
+		
+		return view;
 	}
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		Log.i(TAG, "Running onViewCreated for " + this.currentType + " tab.");
 		super.onViewCreated(view, savedInstanceState);
-        DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
-		FeatureAdapter adapter = new FeatureAdapter(this.getActivity().getApplicationContext(), 
-				moonDB.getLunarClubFeatures(this.currentType));
-		this.setListAdapter(adapter);
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		Log.i(TAG, "Running onActivityCreated for " + this.currentType + " tab.");
+		/*
         DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
 		FeatureAdapter adapter = new FeatureAdapter(this.getActivity().getApplicationContext(), 
 				moonDB.getLunarClubFeatures(this.currentType));
 		this.setListAdapter(adapter);
+		*/
 	}
 
 	@Override
@@ -83,6 +90,14 @@ public class LunarClubFeaturesFragment extends ListFragment {
 		Log.i(TAG, "Running onAttach for " + this.currentType + " tab.");
 	}
 
+	/**
+	 * Function to show detailed information on the feature when a list item 
+	 * is clicked.
+	 * @param l : The current ListView
+	 * @param v : The current View
+	 * @param position : The index of the item being clicked
+	 * @param id : The item ID
+	 */
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
@@ -90,7 +105,4 @@ public class LunarClubFeaturesFragment extends ListFragment {
 		Toast.makeText(LunarClubFeaturesFragment.this.getActivity().getApplicationContext(), text, 
 				Toast.LENGTH_LONG).show();
 	}
-	
-	
-	
 }

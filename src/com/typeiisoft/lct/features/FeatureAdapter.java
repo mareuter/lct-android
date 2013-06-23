@@ -25,7 +25,7 @@ public class FeatureAdapter extends ArrayAdapter<LunarFeature> {
 	private final ArrayList<LunarFeature> features;
 	/** Logging identifier. */
 	private static final String TAG = "FeatureAdapter";
-	
+
 	/**
 	 * This function is the class constructor.
 	 * @param context : The current activity context.
