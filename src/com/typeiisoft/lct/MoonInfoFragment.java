@@ -19,15 +19,19 @@ import android.widget.TextView;
  *
  */
 public class MoonInfoFragment extends Fragment {
-	/** Logging tag. */
-	private static final String TAG = "MoonInfoFragment";
+	/** Logging identifier */
+	private static final String TAG = MoonInfoFragment.class.getName();
 	/** The application preferences. */
 	private AppPreferences appPrefs;
 	/** View for the fragment. */
 	private View view;
 	
 	/**
-	 * This function creates the MoonInfo fragment.
+	 * This function creates the Moon information fragment.
+	 * @param inflater : The object that creates the view.
+	 * @param container : The layout container for the view.
+	 * @param savedInstanceState : Object containing any state information.
+	 * @return The view for the fragment.
 	 */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,14 +51,14 @@ public class MoonInfoFragment extends Fragment {
 		this.appendText(R.id.moon_illum_label, moonInfo.illumation());
 		this.appendText(R.id.moon_colong_label, moonInfo.colong());
 
-    	return view;
+    	return this.view;
     }
 
 	/**
 	 * This function handles appending text to the labels that are already 
 	 * displayed on the layout.
-	 * @param layoutResId
-	 * @param more_text
+	 * @param layoutResId : The requested resource ID.
+	 * @param more_text : The extra text to add the the labels.
 	 */
 	private void appendText(int layoutResId, String more_text) {
 		TextView tv = (TextView) this.view.findViewById(layoutResId);

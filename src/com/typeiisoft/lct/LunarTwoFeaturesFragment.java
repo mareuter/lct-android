@@ -1,10 +1,10 @@
 package com.typeiisoft.lct;
 
-import java.util.ArrayList;
-
 import com.typeiisoft.lct.db.DataBaseHelper;
 import com.typeiisoft.lct.features.FeatureAdapter;
 import com.typeiisoft.lct.features.LunarFeature;
+
+import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -16,20 +16,20 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * This class handles creating the ListView for the LunarII club features. 
- * The item view is just the name of the feature. More information can be 
- * had by performing a long click on an item.
+ * This class handles creating the ListView for the Lunar II club features. 
  * 
  * @author Michael Reuter
- *
  */
 public class LunarTwoFeaturesFragment extends ListFragment {
 	/** Logging identifier. */
-	private final static String TAG = "LunarTwoFeaturesFragment";
+	private final static String TAG = LunarTwoFeaturesFragment.class.getName();
 	
 	/**
-	 * This function does the actual view creation. It also sets up a long 
-	 * click listener to show more information about the feature.
+	 * This function creates the view for the Lunar II Club main tab.
+	 * @param inflater : The object that creates the view.
+	 * @param container : The layout container for the view.
+	 * @param savedInstanceState : Object containing any state information.
+	 * @return The view for the fragment.
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +49,7 @@ public class LunarTwoFeaturesFragment extends ListFragment {
 	}
 
 	/**
-	 * Function to show detailed information on the feature when a list item 
+	 * This function shows detailed information on the feature when a list item 
 	 * is clicked.
 	 * @param l : The current ListView
 	 * @param v : The current View

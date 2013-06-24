@@ -5,8 +5,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
+/**
+ * This class handles the pager routines to deal with the tabs associated with 
+ * the Lunar Club observing program.
+ * 
+ * @author Michael Reuter
+ */
 public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
-	private final static String TAG = "LunarClubPagerAdapter";
+	/** Logging identifier. */
+	private final static String TAG = LunarClubPagerAdapter.class.getName();
 	/** Number of tabs for the display. */
 	private final static int NUM_TABS = 3;
 	/** The set of titles for the Lunar Club tabs */
@@ -14,16 +21,16 @@ public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
 	
 	/**
 	 * Class constructor.
-	 * @param fm : handle for FragmentManager
+	 * @param fm : The handle for the FragmentManager.
 	 */
 	public LunarClubPagerAdapter(FragmentManager fm) {
 		super(fm);
 	}
 
 	/**
-	 * Function to retrieve a fragment at a given index.
-	 * @param position : index for fragment
-	 * @return the fragment at the given index
+	 * This function retrieves a fragment at a given index.
+	 * @param position : The index for a fragment.
+	 * @return The fragment at the given index.
 	 */
 	@Override
 	public Fragment getItem(int position) {
@@ -32,8 +39,8 @@ public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
 	}
 
 	/**
-	 * Function to get the number of total number of tabs.
-	 * @return the number of tabs in the pager
+	 * Ths function to get the number of total number of tabs.
+	 * @return The number of tabs in the pager.
 	 */
 	@Override
 	public int getCount() {
@@ -41,7 +48,7 @@ public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
 	}
 
 	/**
-	 * Function to put a title on the current page.
+	 * The function to put a title on the current page.
 	 * @param position : The index for the title.
 	 * @return The title for the page.
 	 */
