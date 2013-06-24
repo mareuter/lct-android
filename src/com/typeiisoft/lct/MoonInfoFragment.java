@@ -16,10 +16,9 @@ import android.widget.TextView;
  * view.
  * 
  * @author Michael Reuter
- *
  */
 public class MoonInfoFragment extends Fragment {
-	/** Logging identifier */
+	/** Logging identifier. */
 	private static final String TAG = MoonInfoFragment.class.getName();
 	/** The application preferences. */
 	private AppPreferences appPrefs;
@@ -31,7 +30,7 @@ public class MoonInfoFragment extends Fragment {
 	 * @param inflater : The object that creates the view.
 	 * @param container : The layout container for the view.
 	 * @param savedInstanceState : Object containing any state information.
-	 * @return The view for the fragment.
+	 * @return : The view for the fragment.
 	 */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

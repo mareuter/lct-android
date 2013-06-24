@@ -101,7 +101,7 @@ public class LctActivity extends FragmentActivity {
     /**
      * This function created the options menu for the program.
      * @param menu : The object to attach a layout to.
-     * @return Whether or not the menu was created.
+     * @return : Whether or not the menu was created.
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,7 +114,7 @@ public class LctActivity extends FragmentActivity {
      * This function is responsible for handling the actions when a menu 
      * item is clicked.
      * @param item : The item that has been clicked.
-     * @return A flag determining if the action was successfully handled.
+     * @return : True if the action was successfully handled.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

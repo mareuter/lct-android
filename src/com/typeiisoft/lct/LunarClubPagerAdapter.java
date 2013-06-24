@@ -30,7 +30,7 @@ public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
 	/**
 	 * This function retrieves a fragment at a given index.
 	 * @param position : The index for a fragment.
-	 * @return The fragment at the given index.
+	 * @return : The fragment at the given index.
 	 */
 	@Override
 	public Fragment getItem(int position) {
@@ -39,8 +39,8 @@ public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
 	}
 
 	/**
-	 * Ths function to get the number of total number of tabs.
-	 * @return The number of tabs in the pager.
+	 * This function to get the number of total number of tabs.
+	 * @return : The number of tabs in the pager.
 	 */
 	@Override
 	public int getCount() {
@@ -50,7 +50,7 @@ public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
 	/**
 	 * The function to put a title on the current page.
 	 * @param position : The index for the title.
-	 * @return The title for the page.
+	 * @return : The title for the page.
 	 */
     @Override
     public CharSequence getPageTitle(int position) {

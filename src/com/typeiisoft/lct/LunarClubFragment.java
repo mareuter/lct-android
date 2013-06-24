@@ -26,7 +26,7 @@ public class LunarClubFragment extends Fragment {
 	 * @param inflater : The object that creates the view.
 	 * @param container : The layout container for the view.
 	 * @param savedInstanceState : Object containing any state information.
-	 * @return The view for the fragment.
+	 * @return : The view for the fragment.
 	 */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
