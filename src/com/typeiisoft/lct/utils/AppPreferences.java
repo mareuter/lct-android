@@ -9,15 +9,17 @@ import android.content.SharedPreferences.Editor;
  * from this article: http://stackoverflow.com/questions/5734721/android-shared-preferences
  * 
  * @author Michael Reuter
- *
  */
 public class AppPreferences {
+	/** Label for the program's shared preferences. */ 
 	private static final String APP_SHARED_PREFS = "com.typeiisoft.lct.shared_prefs";
+	/** Holder for the share preferences object. */
 	private SharedPreferences sharedPrefs;
+	/** Holder for the shared preferences object editor. */
 	private Editor prefsEditor;
 	
 	/**
-	 * This is the class constructor.
+	 * This function is the class constructor.
 	 * @param activity : Associated activity
 	 */
 	public AppPreferences(Activity activity) {

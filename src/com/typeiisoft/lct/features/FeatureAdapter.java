@@ -1,8 +1,8 @@
 package com.typeiisoft.lct.features;
 
-import java.util.ArrayList;
-
 import com.typeiisoft.lct.R;
+
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,18 +13,18 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 /**
- * This class handles creating the list view for any of the Lunar feature lists.
+ * This class handles creating the item views for any of the Lunar feature 
+ * lists.
  * 
  * @author Michael Reuter
- *
  */
 public class FeatureAdapter extends ArrayAdapter<LunarFeature> {
+	/** Logging identifier. */
+	private static final String TAG = FeatureAdapter.class.getName();
 	/** Associated activity context. */
 	private final Context context;
 	/** Holder for the list of features. */
 	private final ArrayList<LunarFeature> features;
-	/** Logging identifier. */
-	private static final String TAG = "FeatureAdapter";
 
 	/**
 	 * This function is the class constructor.
@@ -39,6 +39,10 @@ public class FeatureAdapter extends ArrayAdapter<LunarFeature> {
 	
 	/**
 	 * This function creates the item view for the list view.
+	 * @param position : The location within the list view.
+	 * @param convertView : Other view to convert to?
+	 * @param parent : The containing list view.
+	 * @return : The populated item view.
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {

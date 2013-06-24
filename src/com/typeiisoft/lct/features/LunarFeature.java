@@ -7,7 +7,6 @@ import com.typeiisoft.lct.utils.StrFormat;
  * a given lunar feature.
  * 
  * @author Michael Reuter
- *
  */
 public class LunarFeature {
 	/** Clean name of the lunar feature (no dicritical marks). */
@@ -38,7 +37,7 @@ public class LunarFeature {
 	private String clubType;
 	
 	/**
-	 * Parametered class constructor.
+	 * This function is the class constructor with parameters.
 	 * @param name : clean name of feature
 	 * @param latitude : latitude of feature
 	 * @param longitude : longitude of feature

@@ -1,5 +1,10 @@
 package com.typeiisoft.lct.db;
 
+import com.typeiisoft.lct.features.FeatureComparator;
+import com.typeiisoft.lct.features.LunarFeature;
+import com.typeiisoft.lct.utils.AppPreferences;
+import com.typeiisoft.lct.utils.MoonInfo;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,11 +12,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import com.typeiisoft.lct.features.FeatureComparator;
-import com.typeiisoft.lct.features.LunarFeature;
-import com.typeiisoft.lct.utils.AppPreferences;
-import com.typeiisoft.lct.utils.MoonInfo;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -22,17 +22,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * This class handles the interaction 
+ * This class handles the interaction for the Moon information database.
+ * 
  * @author Michael Reuter
- *
  */
 public class DataBaseHelper extends SQLiteOpenHelper {
-	private static final String TAG = "DataBaseHelper";
-	//The Android's default system path of your application database.
+	/** Logging identifier. */
+	private static final String TAG = DataBaseHelper.class.getName();
+	/** The Android's default system path of your application database. */
     private static String DB_PATH = "/data/data/com.typeiisoft.lct/databases/";
+    /** Name of the Lunar feature database. */
     private static String DB_NAME = "moon.db";
+    /** Main table name in the Lunar feature database. */
     private static String DB_TABLE = "Features";
+    /** Holder for the SQL database. */
     private SQLiteDatabase myDataBase; 
+    /** Holder for an activity. */
     private final Activity myActivity;
     /** Enum that holds the database fields for integer comparison. */
     private enum DbFields {
@@ -41,22 +46,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
  
     /**
-     * Constructor
-     * Takes and keeps a reference of the passed context in order to access to 
-     * the application assets and resources.
-     * @param activity
+     * This function is the class constructor. It takes and keeps a reference 
+     * of the passed context in order to access to the application assets 
+     * and resources.
+     * @param activity : The top-level activity object.
      */
     public DataBaseHelper(Activity activity) {
- 
     	super(activity, DB_NAME, null, 1);
         this.myActivity = activity;
     }	
 
     /**
-     * Creates a empty database on the system and rewrites it with your own 
-     * database.
-     * */
-    public void createDataBase() throws IOException{
+     * This function creates an empty database on the system and rewrites 
+     * it with your own database.
+     * @throws IOException
+     */
+    public void createDataBase() throws IOException {
     	boolean dbExist = checkDataBase();
     	if (dbExist) {
     		// Do nothing - database already exist
@@ -67,7 +72,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     		// be able to overwrite that database with our database.
         	this.getReadableDatabase();
         	try {
-    			copyDataBase();
+    			this.copyDataBase();
     		} catch (IOException e) {
         		throw new Error("Error copying database");
         	}
@@ -76,11 +81,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Check if the database already exist to avoid re-copying the file each 
-     * time you open the application.
-     * @return true if it exists, false if it doesn't
+     * This function checks if the database already exists to avoid re-copying 
+     * the file each time you open the application.
+     * @return : True if the database exists, false if it doesn't
      */
-    private boolean checkDataBase(){
+    private boolean checkDataBase() {
     	SQLiteDatabase checkDB = null;
     	try {
     		String myPath = DB_PATH + DB_NAME;
@@ -98,11 +103,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Copies your database from your local assets-folder to the just created 
-     * empty database in the system folder, from where it can be accessed and 
-     * handled. This is done by transfering bytestream.
-     * */
-    private void copyDataBase() throws IOException{
+     * This function copies your database from your local assets-folder to the 
+     * just created empty database in the system folder, from where it can be 
+     * accessed and handled. This is done by transferring a byte stream.
+     * @throws IOException
+     */
+    private void copyDataBase() throws IOException {
     	// Open your local db as the input stream
     	InputStream myInput = myActivity.getAssets().open(DB_NAME);
  
@@ -112,7 +118,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	// Open the empty db as the output stream
     	OutputStream myOutput = new FileOutputStream(outFileName);
  
-    	// Transfer bytes from the inputfile to the outputfile
+    	// Transfer bytes from the input file to the output file
     	byte[] buffer = new byte[1024];
     	int length;
     	while ((length = myInput.read(buffer))>0) {
@@ -125,24 +131,39 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	myInput.close();
     }
  
+    /**
+     * This function opens a handle to the database.
+     * @throws SQLException
+     */
     public void openDataBase() throws SQLException {
-    	//Open the database
+    	// Open the database
         String myPath = DB_PATH + DB_NAME;
-    	myDataBase = SQLiteDatabase.openDatabase(myPath, null, 
+    	this.myDataBase = SQLiteDatabase.openDatabase(myPath, null, 
     			SQLiteDatabase.OPEN_READONLY);
     }
  
+    /**
+     * This function closes the handle to the database.
+     */
     @Override
 	public synchronized void close() {
-    	    if(myDataBase != null)
-    		    myDataBase.close();
+    	    if(this.myDataBase != null)
+    		    this.myDataBase.close();
     	    super.close();
 	}
 
+    /**
+     * This function is for creating a database. Since the program uses an existing 
+     * one, this does nothing.
+     */
 	@Override
 	public void onCreate(SQLiteDatabase arg0) {
 	}
 
+	/**
+	 * This function is for updating a database. Since the program uses an existing 
+	 * one that is independent of the program, this does nothing.
+	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
 	}
@@ -154,6 +175,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	/**
 	 * This function gets the Lunar Club feature list based on the target type.
+	 * @param : targetType : The requested type for the Lunar Club features.
 	 * @return : The lists of Lunar Club features.
 	 */
 	public ArrayList<LunarFeature> getLunarClubFeatures(String targetType) {
@@ -230,7 +252,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	 * This function takes the current DB row and creates a LunarFeature 
 	 * object from the information.
 	 * @param cur : The current DB row.
-	 * @return The LunarFeature corresponding to the information in the row.
+	 * @return : The LunarFeature corresponding to the information in the row.
 	 */
 	private LunarFeature cursorToLunarFeature(Cursor cur) {
 		return new LunarFeature(cur.getString(DbFields.NAME.ordinal()), 

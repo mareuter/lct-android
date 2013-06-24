@@ -1,11 +1,6 @@
 package com.typeiisoft.lct.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
-import android.util.Log;
+import com.typeiisoft.lct.features.LunarFeature;
 
 import com.mhuss.AstroLib.Astro;
 import com.mhuss.AstroLib.AstroDate;
@@ -15,18 +10,23 @@ import com.mhuss.AstroLib.NoInitException;
 import com.mhuss.AstroLib.ObsInfo;
 import com.mhuss.AstroLib.TimeOps;
 
-import com.typeiisoft.lct.features.LunarFeature;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
+import android.util.Log;
 
 /**
  * This class handles calling calculations and returning various bits of 
  * information about the moon. It will also handle the logic for determining 
  * if a lunar feature is visible.
+ * 
  * @author Michael Reuter
- *
  */
 public class MoonInfo {
-	/** Logging tag. */
-	private static final String TAG = "MoonInfo";
+	/** Logging identifier. */
+	private static final String TAG = MoonInfo.class.getName();
 	/** The current date and time in UTC for all observation information. */
 	private AstroDate obsDate;
 	/** The current date and time in the local timezone. */
@@ -56,7 +56,7 @@ public class MoonInfo {
 	private String[] noCutoffType = {"Mare", "Oceanus"};
 	
 	/**
-	 * This function is the parameter-less class constructor.
+	 * This function is the class constructor.
 	 */
 	public MoonInfo() {
 		Calendar now = Calendar.getInstance();
@@ -71,7 +71,7 @@ public class MoonInfo {
 	}
 	
 	/**
-	 * This function is the parametered class constructor.
+	 * This function is the class constructor with parameters.
 	 * @param datetime : Array of seven values of the current date and time.
 	 */
 	public MoonInfo(int[] datetime) {

@@ -1,23 +1,20 @@
 package com.typeiisoft.lct.utils;
 
-import java.text.DecimalFormat;
-
+import android.annotation.SuppressLint;
 import com.mhuss.AstroLib.Astro;
+
+import java.text.DecimalFormat;
 
 /**
  * This class is designed to provide various string formatting methods. It 
  * should only be used via the static methods as instantiation is not allowed.
  * 
  * @author Michael Reuter
- *
  */
 public final class StrFormat {
-	
 	/** Constant for the unicode degree symbol. */
 	public static final String DEGREE_SYMBOL = "\u00b0";
-	/** Constant for logging. */
-	public static final String TAG = "StrFormat";
-	
+
 	/**
 	 * This function formats a latitude or longitude value into one with 
 	 * a direction label and two numbers after the decimal.
@@ -25,6 +22,7 @@ public final class StrFormat {
 	 * @param coord : The value of the latitude or longitude.
 	 * @return : A formatted string.
 	 */
+	@SuppressLint("DefaultLocale")
 	public static String coordFormat(String coordType, double coord) {
 		String dir = "";
 		if ("lat" == coordType.toLowerCase()) {
