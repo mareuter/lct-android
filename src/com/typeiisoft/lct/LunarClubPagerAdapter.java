@@ -17,7 +17,7 @@ public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
 	/** Number of tabs for the display. */
 	private final static int NUM_TABS = 3;
 	/** The set of titles for the Lunar Club tabs */
-	private String[] tabTitles = {"Naked Eye", "Binocular", "Telescope"};
+	private String[] tabTitles = {"Naked Eye", "Binocular", "Telescopic"};
 	
 	/**
 	 * Class constructor.
