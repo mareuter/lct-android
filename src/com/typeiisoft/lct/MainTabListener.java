@@ -36,6 +36,16 @@ public final class MainTabListener<T extends Fragment> implements TabListener {
        mActivity = activity;
        mTag = tag;
        mClass = clz;
+       
+       // Check to see if we already have a fragment for this tab, probably
+       // from a previously saved state.  If so, deactivate it, because our
+       // initial state is that a tab isn't shown.
+       mFragment = mActivity.getSupportFragmentManager().findFragmentByTag(mTag);
+       if (mFragment != null && !mFragment.isDetached()) {
+           android.support.v4.app.FragmentTransaction ft = mActivity.getSupportFragmentManager().beginTransaction();
+           ft.detach(mFragment);
+           ft.commit();
+       }
    }
 
    // The following are each of the ActionBar.TabListener callbacks.

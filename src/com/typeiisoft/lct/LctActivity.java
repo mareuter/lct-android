@@ -96,9 +96,22 @@ public class LctActivity extends FragmentActivity {
         actionBar.addTab(tab);
         
         //moonDB.close();
+        if (null != savedInstanceState) {
+        	actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
+        }
     }
     
     /**
+     * This function saves the navigation state to the current ActionBar tab.
+     * @param outState : The saved instance object.
+     */
+    @Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt("tab", this.getActionBar().getSelectedNavigationIndex());
+	}
+
+	/**
      * This function created the options menu for the program.
      * @param menu : The object to attach a layout to.
      * @return : Whether or not the menu was created.
