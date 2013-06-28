@@ -10,8 +10,8 @@ import java.util.Calendar;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -133,7 +133,8 @@ public class LctActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
     	case R.id.about:
-    		startActivity(new Intent(this, About.class));
+    		DialogFragment newFragment = new AboutDialogFragment();
+    		newFragment.show(this.getSupportFragmentManager(), "about");
     		return true;
     	default:
     		return super.onOptionsItemSelected(item);

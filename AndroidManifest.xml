@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".About"
+            android:name=".AboutDialogFragment"
             android:label="@string/about_title"
             android:theme="@android:style/Theme.Dialog">
         </activity>
