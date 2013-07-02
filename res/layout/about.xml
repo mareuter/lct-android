@@ -5,12 +5,14 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/about_version_tv"
+        android:id="@+id/about_program_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:gravity="center_horizontal"
-        android:text="@string/about_version" />
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center"
+        android:textColor="#3366FF"
+        android:text="@string/about_program" />
 
     <ScrollView
         android:id="@+id/scrollView1"

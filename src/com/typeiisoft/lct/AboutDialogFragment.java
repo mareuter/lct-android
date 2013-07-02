@@ -34,14 +34,13 @@ public class AboutDialogFragment extends DialogFragment {
 		builder.setTitle(R.string.about_title);
 		builder.setPositiveButton("OK", null);
 		
-		TextView tv = (TextView) view.findViewById(R.id.about_version_tv);
+		TextView tv = (TextView) view.findViewById(R.id.about_program_tv);
 		String cur_text = tv.getText().toString();
 		try {
 			PackageManager pm = this.getActivity().getApplicationContext().getPackageManager();
 			PackageInfo pi = pm.getPackageInfo(this.getActivity().getApplicationContext().getPackageName(), 0);
 			String versionName = pi.versionName;
-			StringBuffer buff = new StringBuffer(cur_text).append(" ").append(versionName);
-			tv.setText(buff);		
+			tv.setText(String.format(cur_text, versionName));		
 		} 
 		catch (PackageManager.NameNotFoundException nnfe) {
 			Log.e(TAG, "Package name not found!");
