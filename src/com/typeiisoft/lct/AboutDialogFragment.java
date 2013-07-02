@@ -3,6 +3,7 @@ package com.typeiisoft.lct;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.support.v4.app.DialogFragment;
+import android.text.method.LinkMovementMethod;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -46,6 +47,9 @@ public class AboutDialogFragment extends DialogFragment {
 			Log.e(TAG, "Package name not found!");
 		}
 
+		TextView abountContent = (TextView) view.findViewById(R.id.about_content);
+		abountContent.setMovementMethod(LinkMovementMethod.getInstance());
+		
 		return builder.create();
 	}
 }
