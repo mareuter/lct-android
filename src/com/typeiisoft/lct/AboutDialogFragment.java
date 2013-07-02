@@ -31,6 +31,7 @@ public class AboutDialogFragment extends DialogFragment {
 		LayoutInflater inflater = this.getActivity().getLayoutInflater();
 		View view = inflater.inflate(R.layout.about, null);
 		builder.setView(view);
+		builder.setIcon(R.drawable.ic_launcher);
 		builder.setTitle(R.string.about_title);
 		builder.setPositiveButton("OK", null);
 		
