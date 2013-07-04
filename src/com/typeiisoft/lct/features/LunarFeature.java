@@ -1,5 +1,7 @@
 package com.typeiisoft.lct.features;
 
+import android.os.Bundle;
+
 import com.typeiisoft.lct.utils.StrFormat;
 
 /**
@@ -171,5 +173,22 @@ public class LunarFeature {
 		.append("Quad Name: ").append(this.quadName).append(lsp)
 		.append("Quad Code: ").append(this.quadCode).append(lsp);
 		return stb.toString();
+	}
+	
+	/**
+	 * This function creates a Bundle object that contains all of the 
+	 * feature information so that it can be used in a fragment.
+	 * @return : The feature's information in a Bundle object.
+	 */
+	public Bundle toBundle() {
+		Bundle data = new Bundle();
+		data.putString("name", this.name);
+		data.putString("type", this.featureType);
+		data.putString("latitude", StrFormat.coordFormat("lat", this.latitude));
+		data.putString("longitude", StrFormat.coordFormat("lon", this.longitude));
+		data.putString("diameter", StrFormat.formatDouble(this.diameter, 2) + " km");
+		data.putString("quad_name", this.quadName);
+		data.putString("quad_code", this.quadCode);
+		return data;
 	}
 }
