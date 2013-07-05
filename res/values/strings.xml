@@ -10,6 +10,15 @@
     <string name="moon_phase_text">Moon Phase:</string>
     <string name="moon_illum_text">Moon Illumination:</string>
     <string name="moon_colong_text">Moon Colongitude:</string>
+    <!-- Lunar feature dialog strings -->
+    <string name="feature_name">Name: </string>
+    <string name="feature_type">Type: </string>
+    <string name="feature_lat">Latitude: </string>
+    <string name="feature_lon">Longitude: </string>
+    <string name="feature_diameter">Diameter: </string>
+    <string name="feature_quadname">Quad Name: </string>
+    <string name="feature_quadcode">Quad Code: </string>
+    <!-- About dialog strings -->
     <string name="about_label">About</string>
     <string name="about_shortcut">a</string>
     <string name="about_title">About Lunar Club Tools</string>
