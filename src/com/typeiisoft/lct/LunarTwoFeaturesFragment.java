@@ -2,18 +2,19 @@ package com.typeiisoft.lct;
 
 import com.typeiisoft.lct.db.DataBaseHelper;
 import com.typeiisoft.lct.features.FeatureAdapter;
+import com.typeiisoft.lct.features.FeatureDialogFragment;
 import com.typeiisoft.lct.features.LunarFeature;
 
 import java.util.ArrayList;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 /**
  * This class handles creating the ListView for the Lunar II club features. 
@@ -59,8 +60,9 @@ public class LunarTwoFeaturesFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		String text = l.getItemAtPosition(position).toString();
-		Toast.makeText(LunarTwoFeaturesFragment.this.getActivity().getApplicationContext(), text, 
-				Toast.LENGTH_LONG).show();
+		DialogFragment featureFragment = new FeatureDialogFragment();
+		LunarFeature lf = (LunarFeature) l.getItemAtPosition(position);
+		featureFragment.setArguments(lf.toBundle());
+		featureFragment.show(this.getActivity().getSupportFragmentManager(), "l2_feature");
 	}
 }
