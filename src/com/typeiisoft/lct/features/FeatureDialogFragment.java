@@ -19,6 +19,11 @@ public class FeatureDialogFragment extends DialogFragment {
 	/** Holder for the view */
 	private View view;
 	
+	/**
+	 * This function creates the view for the dialog.
+	 * @param savedInstanceState : Object containing saved state information.
+	 * @return : The handle to the created dialog.
+	 */
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
