@@ -112,6 +112,14 @@ public final class StrFormat {
 		return buf.toString();
 	}
 	
+	public static String blankBuffer(int size) {
+		StringBuffer buf = new StringBuffer();
+		for (int i = 0; i < size; i++) {
+			buf.append(" ");
+		}
+		return buf.toString();
+	}
+	
 	/**
 	 * Do not allow class instantiation.
 	 */

@@ -1,6 +1,7 @@
 package com.typeiisoft.lct.features;
 
 import com.typeiisoft.lct.R;
+import com.typeiisoft.lct.utils.StrFormat;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -16,6 +17,8 @@ import android.widget.TextView;
  * @author Michael Reuter
  */
 public class FeatureDialogFragment extends DialogFragment {
+	/** Buffer between label and information text. */
+	private final int BLANK_BUFFER = 2;
 	/** Holder for the view */
 	private View view;
 	
@@ -54,7 +57,9 @@ public class FeatureDialogFragment extends DialogFragment {
 	private void appendText(int layoutResId, String more_text) {
 		TextView tv = (TextView) this.view.findViewById(layoutResId);
 		String cur_text = tv.getText().toString();
-		StringBuffer buff = new StringBuffer(cur_text).append(more_text);
+		StringBuffer buff = new StringBuffer(cur_text)
+		.append(StrFormat.blankBuffer(this.BLANK_BUFFER))
+		.append(more_text);
 		tv.setText(buff);
 	}
 }
