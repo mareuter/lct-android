@@ -37,12 +37,10 @@ public class LunarClubFragment extends Fragment {
         
         // Getting a reference to the ViewPager defined the layout file 
         this.pager = (ViewPager) view.findViewById(R.id.pager);
-        // Do not save state as this causes issues when reselecting sub-tabs.
-        this.pager.setSaveEnabled(false);
- 
         // Getting fragment manager 
-        FragmentManager fm = this.getActivity().getSupportFragmentManager();
- 
+        // Using the child fragment manager helps with remembering the 
+        // state of the child fragments.
+        FragmentManager fm = this.getChildFragmentManager();
         // Instantiating FragmentPagerAdapter
         LunarClubPagerAdapter pagerAdapter = new LunarClubPagerAdapter(fm);
  

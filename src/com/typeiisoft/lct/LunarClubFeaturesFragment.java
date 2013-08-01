@@ -63,19 +63,25 @@ public class LunarClubFeaturesFragment extends ListFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		Log.i(TAG, "Creating " + this.currentType + " tab.");
-		
 		// Inflate the layout for this fragment
-    	View view = inflater.inflate(R.layout.features, container, false);
-    	
+    	return inflater.inflate(R.layout.features, container, false);
+	}
+
+	/**
+	 * This function sets the Lunar Club feature adapter, retrieving the 
+	 * correct list of features.
+	 * @param savedInstance : Object containing any state information.
+	 */
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
     	// Set the content
     	DataBaseHelper moonDB = new DataBaseHelper(this.getActivity());
 		FeatureAdapter adapter = new FeatureAdapter(this.getActivity().getApplicationContext(), 
 				moonDB.getLunarClubFeatures(this.currentType));
 		this.setListAdapter(adapter);
-		
-		return view;
 	}
-
+	
 	/**
 	 * This function shows detailed information on the feature when a list item 
 	 * is clicked.
