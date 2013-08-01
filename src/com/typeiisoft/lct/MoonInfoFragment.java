@@ -40,7 +40,7 @@ public class MoonInfoFragment extends Fragment {
     	
     	this.appPrefs = new AppPreferences(this.getActivity());
 		MoonInfo moonInfo = new MoonInfo(appPrefs.getDateTime());
-		Log.w(TAG, "MoonInfo: " + moonInfo.toString());
+		Log.i(TAG, "MoonInfo: " + moonInfo.toString());
 		
 		String[] dateTime = moonInfo.obsLocalTime();
 		this.appendText(R.id.obsdate_label, dateTime[0]);
