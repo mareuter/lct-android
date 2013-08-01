@@ -112,6 +112,11 @@ public final class StrFormat {
 		return buf.toString();
 	}
 	
+	/**
+	 * This function creates a string with a specified number of spaces.
+	 * @param size : The number of spaces requested.
+	 * @return : A string containing the requested number of spaces.
+	 */
 	public static String blankBuffer(int size) {
 		StringBuffer buf = new StringBuffer();
 		for (int i = 0; i < size; i++) {
