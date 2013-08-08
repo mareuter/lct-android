@@ -10,6 +10,11 @@
     <string name="moon_phase_text">Moon Phase:</string>
     <string name="moon_illum_text">Moon Illumination:</string>
     <string name="moon_colong_text">Moon Colongitude:</string>
+    <!-- Lunar Club Special page strings -->
+    <string name="lcsp_time_from_nm_text">Time from New Moon:</string>
+    <string name="lcsp_cresent_waxing_text">Cresent Moon, Waxing</string>
+    <string name="lcsp_om_in_nm_arms_text">Old Moon in New Moon\'s Arms</string>
+    <string name="lcsp_iv_content_descr">Indicator for visibility.</string>
     <!-- Lunar feature dialog strings -->
     <string name="feature_name">Name:</string>
     <string name="feature_type">Type:</string>
