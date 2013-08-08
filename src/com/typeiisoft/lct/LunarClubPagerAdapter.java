@@ -15,9 +15,9 @@ public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
 	/** Logging identifier. */
 	private final static String TAG = LunarClubPagerAdapter.class.getName();
 	/** Number of tabs for the display. */
-	private final static int NUM_TABS = 3;
+	private final static int NUM_TABS = 4;
 	/** The set of titles for the Lunar Club tabs */
-	private String[] tabTitles = {"Naked Eye", "Binocular", "Telescopic"};
+	private String[] tabTitles = {"Special", "Naked Eye", "Binocular", "Telescopic"};
 	
 	/**
 	 * Class constructor.
@@ -35,7 +35,12 @@ public class LunarClubPagerAdapter extends FragmentStatePagerAdapter {
 	@Override
 	public Fragment getItem(int position) {
 		Log.i(TAG, "Creating tab at position " + String.valueOf(position));
-		return LunarClubFeaturesFragment.newInstance(this.tabTitles[position]);
+		switch (position) {
+		case 0:
+			return LunarClubSpecialFragment.newInstance();
+		default:
+			return LunarClubFeaturesFragment.newInstance(this.tabTitles[position]);
+		}
 	}
 
 	/**
