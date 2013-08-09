@@ -4,6 +4,7 @@ import com.typeiisoft.lct.features.LunarFeature;
 
 import com.mhuss.AstroLib.Astro;
 import com.mhuss.AstroLib.AstroDate;
+import com.mhuss.AstroLib.DateOps;
 import com.mhuss.AstroLib.Lunar;
 import com.mhuss.AstroLib.LunarCalc;
 import com.mhuss.AstroLib.NoInitException;
@@ -12,6 +13,7 @@ import com.mhuss.AstroLib.TimeOps;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -35,6 +37,8 @@ public class MoonInfo {
 	private Lunar lunar;
 	/** Object that holds the observing site information. */
 	private ObsInfo obsInfo;
+	/** Holder for the Time Zone offset. */
+	private int tzOffset;
 	/** Holder for the selenographic colongitude. */
 	private double colongitude;
 	/** Enum containing the lunar phases for integer comparison. */
@@ -61,8 +65,8 @@ public class MoonInfo {
 	public MoonInfo() {
 		Calendar now = Calendar.getInstance();
 		this.obsLocal = (Calendar)now.clone();
-		int offset = now.getTimeZone().getOffset(now.getTimeInMillis()) / Astro.MILLISECONDS_PER_HOUR;
-		now.add(Calendar.HOUR_OF_DAY, -offset);
+		this.tzOffset = now.getTimeZone().getOffset(now.getTimeInMillis()) / Astro.MILLISECONDS_PER_HOUR;
+		now.add(Calendar.HOUR_OF_DAY, this.tzOffset);
 		this.obsDate = new AstroDate(now.get(Calendar.DATE), 
 				now.get(Calendar.MONTH)+1, now.get(Calendar.YEAR), 
 				now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), 
@@ -78,6 +82,7 @@ public class MoonInfo {
 		this.obsDate = new AstroDate(datetime[0], datetime[1], datetime[2],
 				datetime[3], datetime[4], datetime[5]);
 		this.obsLocal = this.obsDate.toGCalendar();
+		this.tzOffset = datetime[6];
 		this.obsLocal.add(Calendar.HOUR_OF_DAY, datetime[6]);
 		this.initialize();
 	}
@@ -152,6 +157,14 @@ public class MoonInfo {
 		buf.append(" ").append(tz);
 		return buf.toString().split(" ", 2);
 	}
+	
+	/**
+	 * This function gets the current local observation time.
+	 * @return : The object holding the time.
+	 */
+	public Calendar getObsLocal() {
+		return this.obsLocal;
+	}
 
 	/**
 	 * This function returns the currently held UTC representation of the 
@@ -164,7 +177,6 @@ public class MoonInfo {
 		return buf.toString().split(" ", 2);
 	}
 
-	
 	/**
 	 * This function returns the selenographic colongitude for the current 
 	 * date and time.
@@ -355,5 +367,42 @@ public class MoonInfo {
 		buf.append("Julian Date: ").append(Double.toString(this.obsDate.jd()));
 		buf.append(System.getProperty("line.separator"));
 		return buf.toString();
+	}
+	
+	/**
+	 * This function returns the local date of the previous new Moon.
+	 * @return : The date of the previous new Moon.
+	 */
+	public Calendar previousNewMoon() {
+		AstroDate nmDate = this.findPreviousPhase(Lunar.NEW);
+		return this.fixTime(nmDate);
+	}
+	
+	/**
+	 * This function determines the previous UTC date of the requested lunar 
+	 * phase. In this context, previous means before the current UTC date.
+	 * @param phase : The requested phase to find.
+	 * @return : The UTC date of the requested phase.
+	 */
+	private AstroDate findPreviousPhase(int phase) {
+		double date = Lunar.getPhase(DateOps.calendarToDay(this.obsDate.toGCalendar()), 
+				phase);
+		AstroDate phaseDate = new AstroDate(date);
+		if (this.obsDate.toGCalendar().before(phaseDate.toGCalendar())) {
+			
+		}
+		return phaseDate;
+	}
+	
+	/**
+	 * This function takes an AstroDate which is in UTC and changes it to a 
+	 * GregorianCalendar and then adjusts it for local time.
+	 * @param ad : The date to adjust.
+	 * @return : The adjusted local date.
+	 */
+	private GregorianCalendar fixTime(AstroDate ad) {
+		GregorianCalendar c = ad.toGCalendar();
+		c.add(Calendar.HOUR_OF_DAY, this.tzOffset);
+		return c;
 	}
 }
