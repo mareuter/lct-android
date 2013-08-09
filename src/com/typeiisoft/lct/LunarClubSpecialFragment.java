@@ -81,7 +81,7 @@ public class LunarClubSpecialFragment extends Fragment {
 		}
 		else {
 			this.appendText(R.id.time_from_new_moon, 
-					this.getString(R.string.empty));
+					this.getString(R.string.lcsp_out_of_limit));
 		}
 		
 	}
