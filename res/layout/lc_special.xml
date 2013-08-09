@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp" >
 
     <TextView
         android:id="@+id/time_from_new_moon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lcsp_time_from_nm_text" />
+        android:text="@string/lcsp_time_from_nm_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +20,9 @@
             android:id="@+id/cresent_waxing_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lcsp_cresent_waxing_text" />
+            android:layout_gravity="center_vertical"
+            android:text="@string/lcsp_cresent_waxing_text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ImageView
             android:id="@+id/cresent_waxing_iv"
@@ -37,7 +41,9 @@
             android:id="@+id/om_in_nm_arms_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lcsp_om_in_nm_arms_text" />
+            android:layout_gravity="center_vertical"
+            android:text="@string/lcsp_om_in_nm_arms_text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ImageView
             android:id="@+id/om_in_nm_arms_iv"
