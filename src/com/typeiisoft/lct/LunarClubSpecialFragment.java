@@ -104,9 +104,16 @@ public class LunarClubSpecialFragment extends Fragment {
 				locCal.getTimeInMillis());
 		double hrsToNm = diffTime / Astro.MILLISECONDS_PER_HOUR;
 		Log.i(TAG, "Time to New Moon = " + hrsToNm);
-		if (hrsToNm < this.TIME_CUTOFF) {
+		if (hrsToNm <= this.TIME_CUTOFF) {
 			String hrsToNmStr = StrFormat.formatDouble(hrsToNm, 1) + " hours";
 			this.appendText(R.id.time_to_new_moon, hrsToNmStr);
+			
+			if (hrsToNm > this.TIME_CRESCENT_WANING && hrsToNm <= this.TIME_CUTOFF) {
+				this.toggleStar(R.id.nm_in_om_arms_iv);
+			}
+			if (hrsToNm <= this.TIME_CRESCENT_WANING) {
+				this.toggleStar(R.id.cresent_waning_iv);
+			}
 		}
 		else {
 			this.appendText(R.id.time_to_new_moon, 
