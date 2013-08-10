@@ -398,7 +398,13 @@ public class MoonInfo {
 				phase);
 		AstroDate phaseDate = new AstroDate(date);
 		if (this.obsDate.toGCalendar().before(phaseDate.toGCalendar())) {
-			
+			// Roll date back by Lunar month
+			Calendar cal = this.obsDate.toGCalendar();
+			cal.add(Calendar.DAY_OF_MONTH, 
+					-1*(int)(LunarCalc.SYNODIC_MONTH+0.5));
+			Log.d(TAG, "Previous phase date to use: " + StrFormat.dateFormat(cal));
+			date = Lunar.getPhase(DateOps.calendarToDay(cal), phase);
+			phaseDate = new AstroDate(date);
 		}
 		return phaseDate;
 	}

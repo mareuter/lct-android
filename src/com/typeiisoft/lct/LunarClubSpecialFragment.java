@@ -70,6 +70,7 @@ public class LunarClubSpecialFragment extends Fragment {
 		
 		// Time from new Moon calculations
 		Calendar nmCal = moonInfo.previousNewMoon();
+		Log.i(TAG, "Previous New Moon: " + StrFormat.dateFormat(nmCal));
 		Calendar locCal = moonInfo.getObsLocal();
 		double diffTime = (double)(locCal.getTimeInMillis() - 
 				nmCal.getTimeInMillis());
