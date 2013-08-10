@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -25,7 +26,11 @@ public class LunarClubSpecialFragment extends Fragment {
 	/** Logging identifier. */
 	private static final String TAG = LunarClubSpecialFragment.class.getName();
 	/** The maximum number of hours to/from new Moon for observations. */
-	private final double TIME_CUTOFF = 72.1;
+	private final double TIME_CUTOFF = 72.0;
+	/** The maximum number of hours for the age of the waxing crescent. */
+	private final double TIME_CRESCENT_WAXING = 40.0;
+	/** The maximum number of hours for the age of the waning crescent. */
+	private final double TIME_CRESCENT_WANING = 48.0;
 	/** The application preferences. */
 	private AppPreferences appPrefs;
 	/** View for the fragment. */
@@ -76,9 +81,16 @@ public class LunarClubSpecialFragment extends Fragment {
 				nmCal.getTimeInMillis());
 		double hrsFromNm = diffTime / Astro.MILLISECONDS_PER_HOUR;
 		Log.i(TAG, "Time from New Moon = " + hrsFromNm);
-		if (hrsFromNm < this.TIME_CUTOFF) {
+		if (hrsFromNm <= this.TIME_CUTOFF) {
 			String hrsFromNmStr = StrFormat.formatDouble(hrsFromNm, 1) + " hours";
 			this.appendText(R.id.time_from_new_moon, hrsFromNmStr);
+			
+			if (hrsFromNm > this.TIME_CRESCENT_WAXING && hrsFromNm <= this.TIME_CUTOFF) {
+				this.toggleStar(R.id.om_in_nm_arms_iv);
+			}
+			if (hrsFromNm <= this.TIME_CRESCENT_WAXING) {
+				this.toggleStar(R.id.cresent_waxing_iv);
+			}
 		}
 		else {
 			this.appendText(R.id.time_from_new_moon, 
@@ -113,5 +125,15 @@ public class LunarClubSpecialFragment extends Fragment {
 		String cur_text = tv.getText().toString();
 		StringBuffer buff = new StringBuffer(cur_text).append(" ").append(more_text);
 		tv.setText(buff);
+	}
+	
+	/**
+	 * This function is responsible for replacing the default star with the 
+	 * "on" star.
+	 * @param layoutResId : The ImageView resource ID.
+	 */
+	private void toggleStar(int layoutResId) {
+		ImageView iv = (ImageView)this.view.findViewById(layoutResId);
+		iv.setImageResource(android.R.drawable.btn_star_big_on);
 	}
 }
