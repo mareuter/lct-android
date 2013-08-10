@@ -2,8 +2,13 @@ package com.typeiisoft.lct.utils;
 
 import android.annotation.SuppressLint;
 import com.mhuss.AstroLib.Astro;
+import com.mhuss.AstroLib.TimeOps;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * This class is designed to provide various string formatting methods. It 
@@ -122,6 +127,15 @@ public final class StrFormat {
 		for (int i = 0; i < size; i++) {
 			buf.append(" ");
 		}
+		return buf.toString();
+	}
+	
+	public static String dateFormat(Calendar cal) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
+		StringBuffer buf = new StringBuffer(format.format(cal.getTime()));
+		String tz = cal.getTimeZone().getDisplayName(TimeOps.dstOffset(cal) != 0, 
+				TimeZone.SHORT);
+		buf.append(" ").append(tz);
 		return buf.toString();
 	}
 	

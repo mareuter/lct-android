@@ -379,6 +379,15 @@ public class MoonInfo {
 	}
 	
 	/**
+	 * This function returns the local date of the next new Moon.
+	 * @return : The date of the next new Moon.
+	 */
+	public Calendar nextNewMoon() {
+		AstroDate nmDate = this.findNextPhase(Lunar.NEW);
+		return this.fixTime(nmDate);
+	}
+	
+	/**
 	 * This function determines the previous UTC date of the requested lunar 
 	 * phase. In this context, previous means before the current UTC date.
 	 * @param phase : The requested phase to find.
@@ -390,6 +399,28 @@ public class MoonInfo {
 		AstroDate phaseDate = new AstroDate(date);
 		if (this.obsDate.toGCalendar().before(phaseDate.toGCalendar())) {
 			
+		}
+		return phaseDate;
+	}
+	
+	/**
+	 * This function determines the next UTC date of the requested lunar 
+	 * phase. In this context, next means after the current UTC date.
+	 * @param phase : The requested phase to find.
+	 * @return : The UTC date of the requested phase.
+	 */
+	private AstroDate findNextPhase(int phase) {
+		double date = Lunar.getPhase(DateOps.calendarToDay(this.obsDate.toGCalendar()), 
+				phase);
+		AstroDate phaseDate = new AstroDate(date);
+		if (this.obsDate.toGCalendar().after(phaseDate.toGCalendar())) {
+			// Push date out by Lunar month
+			Calendar cal = this.obsDate.toGCalendar();
+			cal.add(Calendar.DAY_OF_MONTH, 
+					(int)(LunarCalc.SYNODIC_MONTH+0.5));
+			Log.d(TAG, "Next phase date to use: " + StrFormat.dateFormat(cal));
+			date = Lunar.getPhase(DateOps.calendarToDay(cal), phase);
+			phaseDate = new AstroDate(date);
 		}
 		return phaseDate;
 	}

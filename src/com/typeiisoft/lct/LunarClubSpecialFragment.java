@@ -84,6 +84,21 @@ public class LunarClubSpecialFragment extends Fragment {
 					this.getString(R.string.lcsp_out_of_limit));
 		}
 		
+		// Time to new Moon calculations
+		nmCal = moonInfo.nextNewMoon();
+		Log.i(TAG, "Next New Moon: " + StrFormat.dateFormat(nmCal));
+		diffTime = (double)(nmCal.getTimeInMillis() - 
+				locCal.getTimeInMillis());
+		double hrsToNm = diffTime / Astro.MILLISECONDS_PER_HOUR;
+		Log.i(TAG, "Time to New Moon = " + hrsToNm);
+		if (hrsToNm < this.TIME_CUTOFF) {
+			String hrsToNmStr = StrFormat.formatDouble(hrsToNm, 1) + " hours";
+			this.appendText(R.id.time_to_new_moon, hrsToNmStr);
+		}
+		else {
+			this.appendText(R.id.time_to_new_moon, 
+					this.getString(R.string.lcsp_out_of_limit));
+		}
 	}
 	
 	/**

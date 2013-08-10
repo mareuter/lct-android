@@ -14,6 +14,9 @@
     <string name="lcsp_time_from_nm_text">Time from New Moon:</string>
     <string name="lcsp_cresent_waxing_text">Cresent Moon, Waxing</string>
     <string name="lcsp_om_in_nm_arms_text">Old Moon in New Moon\'s Arms</string>
+    <string name="lcsp_time_to_nm_text">Time to New Moon:</string>
+    <string name="lcsp_cresent_waning_text">Cresent Moon, Waning</string>
+    <string name="lcsp_nm_in_om_arms_text">New Moon in Old Moon\'s Arms</string>
     <string name="lcsp_iv_content_descr">Indicator for visibility.</string>
     <string name="lcsp_out_of_limit">--</string>
     <!-- Lunar feature dialog strings -->
