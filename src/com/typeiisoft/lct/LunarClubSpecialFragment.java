@@ -31,6 +31,10 @@ public class LunarClubSpecialFragment extends Fragment {
 	private final double TIME_CRESCENT_WAXING = 40.0;
 	/** The maximum number of hours for the age of the waning crescent. */
 	private final double TIME_CRESCENT_WANING = 48.0;
+	/** Time range in days for the Cow Jumping over the Moon observation. */
+	private final double[] TIME_COW_JUMPING = new double[]{2.0, 3.0};
+	/** Illuminated fraction for Full Moon. */
+	private final double FULL_MOON_FRACTION = 0.987;
 	/** The application preferences. */
 	private AppPreferences appPrefs;
 	/** View for the fragment. */
@@ -118,6 +122,28 @@ public class LunarClubSpecialFragment extends Fragment {
 		else {
 			this.appendText(R.id.time_to_new_moon, 
 					this.getString(R.string.lcsp_out_of_limit));
+		}
+		
+		// Time to Full Moon calculation
+		// Only needed for Cow Jumping over the Moon
+		Calendar fmCal = moonInfo.nextFullMoon();
+		Log.i(TAG, "Next Full Moon: " + StrFormat.dateFormat(fmCal));
+		diffTime = (double)(fmCal.getTimeInMillis() - 
+				locCal.getTimeInMillis());
+		double daysToFm = diffTime / (Astro.MILLISECONDS_PER_HOUR * Astro.HOURS_PER_DAY);
+		Log.i(TAG, "Time to Full Moon = " + daysToFm);
+		
+		if (daysToFm >= this.TIME_COW_JUMPING[0] && 
+				daysToFm <= this.TIME_COW_JUMPING[1]) {
+			this.toggleStar(R.id.cjotm_iv);			
+		}
+		
+		// All other <Blank> in the Moon will use the illuminated fraction
+		double illum = moonInfo.illumation();
+		if (illum >= this.FULL_MOON_FRACTION) {
+			this.toggleStar(R.id.mitm_iv);
+			this.toggleStar(R.id.witm_iv);
+			this.toggleStar(R.id.ritm_iv);
 		}
 	}
 	

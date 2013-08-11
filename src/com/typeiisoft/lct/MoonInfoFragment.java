@@ -2,6 +2,7 @@ package com.typeiisoft.lct;
 
 import com.typeiisoft.lct.utils.AppPreferences;
 import com.typeiisoft.lct.utils.MoonInfo;
+import com.typeiisoft.lct.utils.StrFormat;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -47,7 +48,8 @@ public class MoonInfoFragment extends Fragment {
 		this.appendText(R.id.obstime_label, dateTime[1]);
 		this.appendText(R.id.moon_phase_label, moonInfo.phase());
 		this.appendText(R.id.moon_age_label, moonInfo.age());
-		this.appendText(R.id.moon_illum_label, moonInfo.illumation());
+		String illumStr = StrFormat.formatDouble(moonInfo.illumation() * 100.0, 1) + "%";
+		this.appendText(R.id.moon_illum_label, illumStr);
 		this.appendText(R.id.moon_colong_label, moonInfo.colong());
 
     	return this.view;

@@ -129,11 +129,10 @@ public class MoonInfo {
 	}
 	
 	/**
-	 * This function gets the illuminated fraction of the Moon's surface and 
-	 * gives that as a percentage in a string.
-	 * @return : A string containing the percentage of the illuminated Moon surface.
+	 * This function gets the illuminated fraction of the Moon's surface.
+	 * @return : The fraction of the illuminated Moon surface.
 	 */
-	public String illumation() {
+	public double illumation() {
 		double illum = 0.0;
 		try {
 			illum = this.lunar.illuminatedFraction();
@@ -141,7 +140,7 @@ public class MoonInfo {
 		catch (NoInitException nie) {
 			Log.e(TAG, "Lunar object is not initialized for calculating illumination.");
 		}
-		return StrFormat.formatDouble(illum * 100.0, 1) + "%";
+		return illum;
 	}
 	
 	/**
@@ -385,6 +384,15 @@ public class MoonInfo {
 	public Calendar nextNewMoon() {
 		AstroDate nmDate = this.findNextPhase(Lunar.NEW);
 		return this.fixTime(nmDate);
+	}
+	
+	/**
+	 * This function returns the local date of the next full Moon.
+	 * @return : The date of the next full Moon.
+	 */
+	public Calendar nextFullMoon() {
+		AstroDate fmDate = this.findNextPhase(Lunar.FULL);
+		return this.fixTime(fmDate);
 	}
 	
 	/**
