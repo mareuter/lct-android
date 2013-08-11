@@ -1,200 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginBottom="10dp" >
+<android.support.v7.widget.GridLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:lct="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    lct:columnCount="2"
+    lct:rowCount="12" >
 
     <TextView
         android:id="@+id/time_from_new_moon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        lct:layout_columnSpan="2"
         android:text="@string/lcsp_time_from_nm_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TextView
+        android:id="@+id/cresent_waxing_tv"
+        android:text="@string/lcsp_cresent_waxing_text"
+        lct:layout_gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android:id="@+id/cresent_waxing_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lcsp_cresent_waxing_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+    <ImageView
+        android:id="@+id/cresent_waxing_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/lcsp_iv_content_descr"
+        android:src="@android:drawable/btn_star_big_off" />
 
-        <ImageView
-            android:id="@+id/cresent_waxing_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/lcsp_iv_content_descr"
-            android:src="@android:drawable/btn_star_big_off" />
+    <TextView
+        android:id="@+id/om_in_nm_arms_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/lcsp_om_in_nm_arms_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/om_in_nm_arms_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lcsp_om_in_nm_arms_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ImageView
-            android:id="@+id/om_in_nm_arms_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/lcsp_iv_content_descr"
-            android:src="@android:drawable/btn_star_big_off" />
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/om_in_nm_arms_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/lcsp_iv_content_descr"
+        android:src="@android:drawable/btn_star_big_off" />
 
     <View
-        android:layout_width="fill_parent"
+        lct:layout_columnSpan="2"
         android:layout_height="1dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
         android:background="@color/horizontal_rule"/>
         
     <TextView
         android:id="@+id/time_to_new_moon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        lct:layout_columnSpan="2"
         android:text="@string/lcsp_time_to_nm_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <TextView
+        android:id="@+id/cresent_waning_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/lcsp_cresent_waning_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android:id="@+id/cresent_waning_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lcsp_cresent_waning_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+    <ImageView
+        android:id="@+id/cresent_waning_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/lcsp_iv_content_descr"
+        android:src="@android:drawable/btn_star_big_off" />
 
-        <ImageView
-            android:id="@+id/cresent_waning_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/lcsp_iv_content_descr"
-            android:src="@android:drawable/btn_star_big_off" />
+    <TextView
+        android:id="@+id/nm_in_om_arms_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/lcsp_nm_in_om_arms_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/nm_in_om_arms_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/lcsp_iv_content_descr"
+        android:src="@android:drawable/btn_star_big_off" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/nm_in_om_arms_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lcsp_nm_in_om_arms_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ImageView
-            android:id="@+id/nm_in_om_arms_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/lcsp_iv_content_descr"
-            android:src="@android:drawable/btn_star_big_off" />
-
-    </LinearLayout>
-    
     <View
-        android:layout_width="fill_parent"
+        lct:layout_columnSpan="2"
         android:layout_height="1dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
         android:background="@color/horizontal_rule"/>
+
+   <TextView
+        android:id="@+id/cjotm_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/lcsp_cjotm_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+   <ImageView
+        android:id="@+id/cjotm_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/lcsp_iv_content_descr"
+        android:src="@android:drawable/btn_star_big_off" />
+
+    <TextView
+        android:id="@+id/mitm_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/lcsp_mitm_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/mitm_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/lcsp_iv_content_descr"
+        android:src="@android:drawable/btn_star_big_off" />
+
+    <TextView
+        android:id="@+id/witm_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/lcsp_witm_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/witm_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/lcsp_iv_content_descr"
+        android:src="@android:drawable/btn_star_big_off" />
+
+    <TextView
+        android:id="@+id/ritm_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/lcsp_ritm_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/ritm_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/lcsp_iv_content_descr"
+        android:src="@android:drawable/btn_star_big_off" />
     
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <!-- Empty view to stop last row from filling to bottom of screen -->
+    <View
+        lct:layout_columnSpan="2" />
 
-        <TextView
-            android:id="@+id/cjotm_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lcsp_cjotm_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ImageView
-            android:id="@+id/cjotm_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/lcsp_iv_content_descr"
-            android:src="@android:drawable/btn_star_big_off" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/mitm_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lcsp_mitm_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ImageView
-            android:id="@+id/mitm_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/lcsp_iv_content_descr"
-            android:src="@android:drawable/btn_star_big_off" />
-
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/witm_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lcsp_witm_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ImageView
-            android:id="@+id/witm_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/lcsp_iv_content_descr"
-            android:src="@android:drawable/btn_star_big_off" />
-
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/ritm_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/lcsp_ritm_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <ImageView
-            android:id="@+id/ritm_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/lcsp_iv_content_descr"
-            android:src="@android:drawable/btn_star_big_off" />
-
-    </LinearLayout>
-        
-</LinearLayout>
+</android.support.v7.widget.GridLayout>
