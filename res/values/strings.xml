@@ -22,7 +22,7 @@
     <string name="lcsp_witm_text">Woman in the Moon</string>
     <string name="lcsp_ritm_text">Rabbit in the Moon</string>
     <string name="lcsp_iv_content_descr">Indicator for visibility.</string>
-    <string name="lcsp_out_of_limit">--</string>
+    <string name="lcsp_out_of_limit">----</string>
     <!-- Lunar feature dialog strings -->
     <string name="feature_name">Name:</string>
     <string name="feature_type">Type:</string>
