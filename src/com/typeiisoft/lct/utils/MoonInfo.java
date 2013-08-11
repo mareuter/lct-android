@@ -9,13 +9,9 @@ import com.mhuss.AstroLib.Lunar;
 import com.mhuss.AstroLib.LunarCalc;
 import com.mhuss.AstroLib.NoInitException;
 import com.mhuss.AstroLib.ObsInfo;
-import com.mhuss.AstroLib.TimeOps;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import android.util.Log;
 
@@ -119,13 +115,11 @@ public class MoonInfo {
 	}
 	
 	/**
-	 * This function gets the age of the Moon in days and gives back a string 
-	 * containing two decimal places.
-	 * @return : A string representing the Moon's age.
+	 * This function gets the age of the Moon in days.
+	 * @return : The Moon's age.
 	 */
-	public String age() {
-		double currentAge = LunarCalc.ageOfMoonInDays(this.obsDate.jd());
-		return StrFormat.formatDouble(currentAge, 2) + " days";
+	public double age() {
+		return LunarCalc.ageOfMoonInDays(this.obsDate.jd());
 	}
 	
 	/**
@@ -144,20 +138,6 @@ public class MoonInfo {
 	}
 	
 	/**
-	 * This function returns the currently held local representation of the 
-	 * observation date and time as separate strings.
-	 * @return : A date string and a time string in the local timezone.
-	 */
-	public String[] obsLocalTime() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
-		StringBuffer buf = new StringBuffer(format.format(this.obsLocal.getTime()));
-		String tz = this.obsLocal.getTimeZone().getDisplayName(TimeOps.dstOffset(this.obsLocal) != 0, 
-				TimeZone.SHORT);
-		buf.append(" ").append(tz);
-		return buf.toString().split(" ", 2);
-	}
-	
-	/**
 	 * This function gets the current local observation time.
 	 * @return : The object holding the time.
 	 */
@@ -166,25 +146,22 @@ public class MoonInfo {
 	}
 
 	/**
-	 * This function returns the currently held UTC representation of the 
-	 * observation date and time as separate strings. 
-	 * @return : A date string and a time string in the UTC timezone.
+	 * This function gets the current UTC observation time.
+	 * @return : The object holding the time.
 	 */
-	public String[] obsUtcTime() {
-		StringBuffer buf = new StringBuffer(this.obsDate.toMinString());
-		buf.append(" UTC");
-		return buf.toString().split(" ", 2);
+	public Calendar getObsUtc() {
+		return this.obsDate.toGCalendar();
 	}
 
 	/**
 	 * This function returns the selenographic colongitude for the current 
 	 * date and time.
-	 * @return : The selenographic colongitude as a DMS string.
+	 * @return : The current selenographic colongitude.
 	 */
-	public String colong() {
+	public double colong() {
 		this.getColongitude();
 		Log.i(TAG, "Colongitude calculated = " + Double.toString(this.colongitude));
-		return StrFormat.dmsFromDd(this.colongitude, false);
+		return this.colongitude;
 	}
 	
 	/**
@@ -360,7 +337,7 @@ public class MoonInfo {
 	 */
 	public String toString() {
 		StringBuffer buf = new StringBuffer();
-		String[] tmp = this.obsLocalTime();
+		String[] tmp = StrFormat.dateFormat(this.obsLocal).split(" ", 2);
 		buf.append("Date: ").append(tmp[0]).append(System.getProperty("line.separator"));
 		buf.append("Time: ").append(tmp[1]).append(System.getProperty("line.separator"));
 		buf.append("Julian Date: ").append(Double.toString(this.obsDate.jd()));

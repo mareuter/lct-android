@@ -43,14 +43,16 @@ public class MoonInfoFragment extends Fragment {
 		MoonInfo moonInfo = new MoonInfo(appPrefs.getDateTime());
 		Log.i(TAG, "MoonInfo: " + moonInfo.toString());
 		
-		String[] dateTime = moonInfo.obsLocalTime();
+		String[] dateTime = StrFormat.dateFormat(moonInfo.getObsLocal()).split(" ", 2);
 		this.appendText(R.id.obsdate_label, dateTime[0]);
 		this.appendText(R.id.obstime_label, dateTime[1]);
 		this.appendText(R.id.moon_phase_label, moonInfo.phase());
-		this.appendText(R.id.moon_age_label, moonInfo.age());
+		String ageStr = StrFormat.formatDouble(moonInfo.age(), 2) + " days";
+		this.appendText(R.id.moon_age_label, ageStr);
 		String illumStr = StrFormat.formatDouble(moonInfo.illumation() * 100.0, 1) + "%";
 		this.appendText(R.id.moon_illum_label, illumStr);
-		this.appendText(R.id.moon_colong_label, moonInfo.colong());
+		String colongStr = StrFormat.dmsFromDd(moonInfo.colong(), false);
+		this.appendText(R.id.moon_colong_label, colongStr);
 
     	return this.view;
     }

@@ -1,8 +1,9 @@
 package com.typeiisoft.lct.utils;
 
-import android.annotation.SuppressLint;
 import com.mhuss.AstroLib.Astro;
 import com.mhuss.AstroLib.TimeOps;
+
+import android.annotation.SuppressLint;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -130,6 +131,11 @@ public final class StrFormat {
 		return buf.toString();
 	}
 	
+	/**
+	 * This function makes a date formatted string for the given Calendar.
+	 * @param cal : The object holding the time.
+	 * @return : The formatted date string.
+	 */
 	public static String dateFormat(Calendar cal) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
 		StringBuffer buf = new StringBuffer(format.format(cal.getTime()));
