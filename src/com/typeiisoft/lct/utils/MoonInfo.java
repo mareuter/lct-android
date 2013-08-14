@@ -28,7 +28,7 @@ public class MoonInfo {
 	/** The current date and time in UTC for all observation information. */
 	private AstroDate obsDate;
 	/** The current date and time in the local timezone. */
-	private Calendar obsLocal;
+	private GregorianCalendar obsLocal;
 	/** Object that does most of the calculations. */
 	private Lunar lunar;
 	/** Object that holds the observing site information. */
@@ -60,7 +60,7 @@ public class MoonInfo {
 	 */
 	public MoonInfo() {
 		Calendar now = Calendar.getInstance();
-		this.obsLocal = (Calendar)now.clone();
+		this.obsLocal = (GregorianCalendar)now.clone();
 		this.tzOffset = now.getTimeZone().getOffset(now.getTimeInMillis()) / Astro.MILLISECONDS_PER_HOUR;
 		now.add(Calendar.HOUR_OF_DAY, this.tzOffset);
 		this.obsDate = new AstroDate(now.get(Calendar.DATE), 
@@ -119,7 +119,7 @@ public class MoonInfo {
 	 * @return : The Moon's age.
 	 */
 	public double age() {
-		return LunarCalc.ageOfMoonInDays(this.obsDate.jd());
+		return LunarCalc.ageOfMoonInDays(this.obsLocal);
 	}
 	
 	/**
