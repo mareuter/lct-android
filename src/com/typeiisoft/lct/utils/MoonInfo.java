@@ -165,6 +165,22 @@ public class MoonInfo {
 	}
 	
 	/**
+	 * This function returns the phase angle for the moon in units of 
+	 * radians.
+	 * @return : The current lunar phase angle.
+	 */
+	public double phaseAngle() {
+		double phaseAngle = 0.0;
+		try {
+			phaseAngle = this.lunar.phaseAngle();
+		}
+		catch (NoInitException nie) {
+			Log.e(TAG, "Lunar object is not initialized for calculating phase angle.");
+		}
+		return phaseAngle;
+	}
+	
+	/**
 	 * This function returns the phase of the Moon as a string.
 	 * @return : The Moon phase as a string.
 	 */
@@ -299,14 +315,20 @@ public class MoonInfo {
 	 * @return : The current time of day.
 	 */
 	private TimeOfDay getTimeOfDay() {
-		int phase = this.getPhase().ordinal();
-		if (phase >= Phase.NM.ordinal() && 
-				phase <= Phase.WAXING_GIBBOUS.ordinal()) {
+		double phaseAngle = this.phaseAngle();
+		double sinPhaseAngle = Math.sin(phaseAngle);
+		if (sinPhaseAngle > 0.0) {
 			return TimeOfDay.MORNING;
 		}
-		else {
+		else if (sinPhaseAngle < 0.0) {
 			return TimeOfDay.EVENING;
 		}
+		else {
+			if (phaseAngle == 0.0 || phaseAngle == Astro.TWO_PI) {
+				return TimeOfDay.EVENING;
+			}
+		}
+		return TimeOfDay.MORNING;
 	}
 	
 	/**
