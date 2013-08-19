@@ -278,34 +278,41 @@ public class MoonInfo {
 	 * @return : The moon phase as an enum value.
 	 */
 	private Phase getPhase() {
-		this.getColongitude();
-		if (270.0 == this.colongitude) {
+		double illum = this.illumation();
+		double phaseAngle = this.phaseAngle();
+		double sinPhaseAngle = Math.sin(phaseAngle);
+		if (illum < 0.02) {
 			return Phase.NM;
 		}
-		else if (this.colongitude > 270.0 && this.colongitude < 360.0) {
-			return Phase.WAXING_CRESENT;
+		if (0.02 <= illum && illum <= 0.49) {
+			if (sinPhaseAngle > 0.0) {
+				return Phase.WAXING_CRESENT;
+			}
+			else {
+				return Phase.WANING_CRESENT;
+			}
 		}
-		else if (0.0 == this.colongitude || 360.0 == this.colongitude) {
-			return Phase.FQ;
+		if (0.49 < illum && illum < 0.51) {
+			if (sinPhaseAngle > 0.0) {
+				return Phase.FQ;
+			}
+			else {
+				return Phase.TQ;
+			}
 		}
-		else if (this.colongitude > 0.0 && this.colongitude < 90.0) {
-			return Phase.WAXING_GIBBOUS;
+		if (0.51 <= illum && illum <= 0.99) {
+			if (sinPhaseAngle > 0.0) {
+				return Phase.WAXING_GIBBOUS;
+			}
+			else {
+				return Phase.WANING_GIBBOUS;
+			}
 		}
-		else if (90.0 == this.colongitude) {
+		if (illum > 0.99) {
 			return Phase.FM;
 		}
-		else if (this.colongitude > 90.0 && this.colongitude < 180.0) {
-			return Phase.WANING_GIBBOUS;
-		}
-		else if (180.0 == this.colongitude) {
-			return Phase.TQ;
-		}
-		else if (this.colongitude > 180.0 && this.colongitude < 270.0) {
-			return Phase.WANING_CRESENT;
-		}
-		else {
-			return Phase.NM;
-		}
+		// Shouldn't make it here
+		return Phase.NM;
 	}
 	
 	/**
