@@ -54,6 +54,8 @@ public class MoonInfo {
 	private static final double FEATURE_CUTOFF = 15D;
 	/** Lunar features to which no selenographic longitude cutoff is applied. */
 	private String[] noCutoffType = {"Mare", "Oceanus"};
+	/** Pi divided by four */
+	private static final double PI_OVER_FOUR = Math.PI / 4D;
 	
 	/**
 	 * This function is the class constructor.
@@ -345,19 +347,19 @@ public class MoonInfo {
 	 */
 	private double colongToLong() {
 		this.getColongitude();
-		int phase = this.getPhase().ordinal();
-		if (Phase.NM.ordinal() == phase || Phase.WAXING_CRESENT.ordinal() == phase) {
+		double phaseAngle = this.phaseAngle();
+		double sinPhaseAngle = Math.sin(phaseAngle);
+		if (phaseAngle <= Astro.PI_OVER_TWO && phaseAngle > PI_OVER_FOUR) {
 			return 360.0 - this.colongitude;
 		}
-		else if (Phase.FQ.ordinal() == phase || Phase.WAXING_GIBBOUS.ordinal() == phase) {
+		if (phaseAngle <= PI_OVER_FOUR && phaseAngle > 0.0) {
 			return -1.0 * this.colongitude;
 		}
-		else if (Phase.FM.ordinal() == phase || Phase.WANING_GIBBOUS.ordinal() == phase) {
+		if (sinPhaseAngle < 0.0 || phaseAngle == 0.0 || phaseAngle == Astro.TWO_PI) {
 			return 180.0 - this.colongitude;
 		}
-		else {
-			return -1.0 * (this.colongitude - 180.0);
-		}
+		Log.d(TAG, "Oops, shouldn't have gotten here!");
+		return this.colongitude;
 	}
 	
 	/**
