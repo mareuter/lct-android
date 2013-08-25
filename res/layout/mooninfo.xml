@@ -1,54 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:lct="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/GridLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal"
+    lct:columnCount="2"
+    lct:rowCount="12" >
+
     <TextView
-        android:id="@+id/obsdate_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/date_label_text"
-        android:textSize="20sp"
-        android:paddingTop="5dip"
-        android:paddingBottom="5dip" />
+        android:id="@+id/last_obs_tv"
+        lct:layout_columnSpan="2"
+        lct:layout_gravity="center"
+        android:text="@string/eph_last_obs_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <TextView
-        android:id="@+id/obstime_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/time_label_text"
-        android:textSize="20sp"
-        android:paddingTop="5dip"
-        android:paddingBottom="5dip" />
+        android:id="@+id/local_date_tv"
+        lct:layout_columnSpan="2"
+        android:text="@string/eph_local_date_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <TextView
-        android:id="@+id/moon_phase_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/moon_phase_text"
-        android:textSize="20sp"
-        android:paddingTop="5dip"
-        android:paddingBottom="5dip" />
-        <TextView
-        android:id="@+id/moon_age_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/moon_age_text"
-        android:textSize="20sp"
-        android:paddingTop="5dip"
-        android:paddingBottom="5dip" />
+        android:id="@+id/utc_date_tv"
+        lct:layout_columnSpan="2"
+        android:text="@string/eph_utc_date_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <TextView
-        android:id="@+id/moon_illum_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/moon_illum_text"
-        android:textSize="20sp"
-        android:paddingTop="5dip"
-        android:paddingBottom="5dip" />
+        android:id="@+id/moon_age_tv"
+        lct:layout_columnSpan="2"
+        android:text="@string/eph_moon_age_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <TextView
-        android:id="@+id/moon_colong_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/moon_colong_text"
-        android:textSize="20sp"
-        android:paddingTop="5dip"
-        android:paddingBottom="5dip" />
-</LinearLayout>
+        android:id="@+id/moon_phase_angle_tv"
+        lct:layout_columnSpan="2"
+        android:text="@string/eph_moon_phase_angle_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/moon_illum_tv"
+        lct:layout_columnSpan="2"
+        android:text="@string/eph_moon_illum_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/moon_colong_tv"
+        lct:layout_columnSpan="2"
+        android:text="@string/eph_moon_colong_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <View
+        android:layout_height="1dp"
+        lct:layout_columnSpan="2"
+        android:background="@color/horizontal_rule"
+        android:paddingBottom="5dp"
+        android:paddingTop="10dp" />
+
+    <ImageView
+        android:id="@+id/new_moon_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/eph_iv_content_descr"
+        android:src="@drawable/ic_new_moon" />
+    
+    <TextView
+        android:id="@+id/new_moon_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/eph_no_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/fq_moon_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/eph_iv_content_descr"
+        android:src="@drawable/ic_fq_moon" />
+    
+    <TextView
+        android:id="@+id/fq_moon_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/eph_no_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+     <ImageView
+        android:id="@+id/full_moon_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/eph_iv_content_descr"
+        android:src="@drawable/ic_full_moon" />
+    
+    <TextView
+        android:id="@+id/full_moon_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/eph_no_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <ImageView
+        android:id="@+id/tq_moon_iv"
+        lct:layout_gravity="center_horizontal"
+        android:contentDescription="@string/eph_iv_content_descr"
+        android:src="@drawable/ic_tq_moon" />
+    
+    <TextView
+        android:id="@+id/tq_moon_tv"
+        lct:layout_gravity="center_vertical"
+        android:text="@string/eph_no_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+    <!-- Empty view to stop last row from filling to bottom of screen -->
+    <View
+        lct:layout_columnSpan="2" />
+
+</android.support.v7.widget.GridLayout>
