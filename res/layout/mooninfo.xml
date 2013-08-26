@@ -57,7 +57,14 @@
         android:background="@color/horizontal_rule"
         android:paddingBottom="5dp"
         android:paddingTop="10dp" />
-
+   
+   <TextView
+        android:id="@+id/phase_dates_tv"
+        lct:layout_columnSpan="2"
+        lct:layout_gravity="center"
+        android:text="@string/eph_phase_dates_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
     <ImageView
         android:id="@+id/new_moon_iv"
         lct:layout_gravity="center_horizontal"

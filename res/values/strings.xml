@@ -12,6 +12,7 @@
     <string name="eph_moon_phase_text">Phase</string>
     <string name="eph_moon_illum_text">Illumination</string>
     <string name="eph_moon_colong_text">Colongitude</string>
+    <string name="eph_phase_dates_text">Phase Dates</string>
     <string name="eph_iv_content_descr">Lunar phase indicator.</string>
     <string name="eph_no_text"></string>
     <!-- Lunar Club Special page strings -->
