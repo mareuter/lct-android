@@ -146,6 +146,21 @@ public final class StrFormat {
 	}
 	
 	/**
+	 * This function makes a date formatted string without seconds for the 
+	 * given Calendar.
+	 * @param cal : The object holding the time.
+	 * @return : The formatted date string.
+	 */
+	public static String dateFormatNoSeconds(Calendar cal) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault());
+		StringBuffer buf = new StringBuffer(format.format(cal.getTime()));
+		String tz = cal.getTimeZone().getDisplayName(TimeOps.dstOffset(cal) != 0, 
+				TimeZone.SHORT);
+		buf.append(" ").append(tz);
+		return buf.toString();
+	}
+	
+	/**
 	 * Do not allow class instantiation.
 	 */
 	private StrFormat() {

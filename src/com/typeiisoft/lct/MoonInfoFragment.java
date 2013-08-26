@@ -43,17 +43,28 @@ public class MoonInfoFragment extends Fragment {
 		MoonInfo moonInfo = new MoonInfo(appPrefs.getDateTime());
 		Log.i(TAG, "MoonInfo: " + moonInfo.toString());
 		
-		String[] dateTime = StrFormat.dateFormat(moonInfo.getObsLocal()).split(" ", 2);
-		this.appendText(R.id.obsdate_label, dateTime[0]);
-		this.appendText(R.id.obstime_label, dateTime[1]);
-		this.appendText(R.id.moon_phase_label, moonInfo.phase());
+		String[] localDateTime = StrFormat.dateFormatNoSeconds(moonInfo.getObsLocal()).split(" ");
+		String localDateStr = "(" + localDateTime[2] + ") " + localDateTime[0] + " " + localDateTime[1];
+		this.appendText(R.id.local_date_tv, localDateStr);
+		String[] utcDateTime = StrFormat.dateFormatNoSeconds(moonInfo.getObsUtc()).split(" ");
+		this.appendText(R.id.utc_date_tv, " " + utcDateTime[0] + " " + utcDateTime[1]);
+		this.appendText(R.id.moon_phase_angle_tv, moonInfo.phase());
 		String ageStr = StrFormat.formatDouble(moonInfo.age(), 2) + " days";
-		this.appendText(R.id.moon_age_label, ageStr);
+		this.appendText(R.id.moon_age_tv, ageStr);
 		String illumStr = StrFormat.formatDouble(moonInfo.illumation() * 100.0, 1) + "%";
-		this.appendText(R.id.moon_illum_label, illumStr);
+		this.appendText(R.id.moon_illum_tv, illumStr);
 		String colongStr = StrFormat.dmsFromDd(moonInfo.colong(), false);
-		this.appendText(R.id.moon_colong_label, colongStr);
+		this.appendText(R.id.moon_colong_tv, colongStr);
 
+		this.appendText(R.id.new_moon_tv, 
+				StrFormat.dateFormatNoSeconds(moonInfo.previousNewMoon()));
+		this.appendText(R.id.fq_moon_tv, 
+				StrFormat.dateFormatNoSeconds(moonInfo.nextFirstQuarterMoon()));
+		this.appendText(R.id.full_moon_tv, 
+				StrFormat.dateFormatNoSeconds(moonInfo.nextFullMoon()));
+		this.appendText(R.id.tq_moon_tv, 
+				StrFormat.dateFormatNoSeconds(moonInfo.nextThirdQuarterMoon()));
+		
     	return this.view;
     }
 

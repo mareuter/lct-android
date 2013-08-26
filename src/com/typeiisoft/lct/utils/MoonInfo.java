@@ -353,6 +353,33 @@ public class MoonInfo {
 		AstroDate nmDate = this.findPreviousPhase(Lunar.NEW);
 		return this.fixTime(nmDate);
 	}
+
+	/**
+	 * This function returns the local date of the previous full Moon.
+	 * @return : The date of the previous full Moon.
+	 */
+	public Calendar previousFullMoon() {
+		AstroDate fmDate = this.findPreviousPhase(Lunar.FULL);
+		return this.fixTime(fmDate);
+	}
+
+	/**
+	 * This function returns the local date of the previous first quarter Moon.
+	 * @return : The date of the previous first quarter Moon.
+	 */
+	public Calendar previousFirstQuarterMoon() {
+		AstroDate fqmDate = this.findPreviousPhase(Lunar.Q1);
+		return this.fixTime(fqmDate);
+	}
+	
+	/**
+	 * This function returns the local date of the previous third quarter Moon.
+	 * @return : The date of the previous third quarter Moon.
+	 */
+	public Calendar previousThirdQuarterMoon() {
+		AstroDate tqmDate = this.findPreviousPhase(Lunar.Q3);
+		return this.fixTime(tqmDate);
+	}
 	
 	/**
 	 * This function returns the local date of the next new Moon.
@@ -370,6 +397,24 @@ public class MoonInfo {
 	public Calendar nextFullMoon() {
 		AstroDate fmDate = this.findNextPhase(Lunar.FULL);
 		return this.fixTime(fmDate);
+	}
+	
+	/**
+	 * This function returns the local date of the next first quarter Moon.
+	 * @return : The date of the next first quarter Moon.
+	 */
+	public Calendar nextFirstQuarterMoon() {
+		AstroDate fqmDate = this.findNextPhase(Lunar.Q1);
+		return this.fixTime(fqmDate);
+	}
+
+	/**
+	 * This function returns the local date of the next third quarter Moon.
+	 * @return : The date of the next third quarter Moon.
+	 */
+	public Calendar nextThirdQuarterMoon() {
+		AstroDate tqmDate = this.findNextPhase(Lunar.Q3);
+		return this.fixTime(tqmDate);
 	}
 	
 	/**
