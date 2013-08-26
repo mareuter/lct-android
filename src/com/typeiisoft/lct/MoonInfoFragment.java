@@ -47,8 +47,8 @@ public class MoonInfoFragment extends Fragment {
 		String localDateStr = "(" + localDateTime[2] + ") " + localDateTime[0] + " " + localDateTime[1];
 		this.appendText(R.id.local_date_tv, localDateStr);
 		String[] utcDateTime = StrFormat.dateFormatNoSeconds(moonInfo.getObsUtc()).split(" ");
-		this.appendText(R.id.utc_date_tv, " " + utcDateTime[0] + " " + utcDateTime[1]);
-		this.appendText(R.id.moon_phase_angle_tv, moonInfo.phase());
+		this.appendText(R.id.utc_date_tv, utcDateTime[0] + " " + utcDateTime[1]);
+		this.appendText(R.id.moon_phase_tv, moonInfo.phase());
 		String ageStr = StrFormat.formatDouble(moonInfo.age(), 2) + " days";
 		this.appendText(R.id.moon_age_tv, ageStr);
 		String illumStr = StrFormat.formatDouble(moonInfo.illumation() * 100.0, 1) + "%";

@@ -34,9 +34,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/moon_phase_angle_tv"
+        android:id="@+id/moon_phase_tv"
         lct:layout_columnSpan="2"
-        android:text="@string/eph_moon_phase_angle_text"
+        android:text="@string/eph_moon_phase_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
