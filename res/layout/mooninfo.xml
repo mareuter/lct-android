@@ -5,6 +5,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal"
+    android:paddingLeft="@dimen/moon_info_gridlayout_left_buffer"
+    android:paddingRight="@dimen/moon_info_gridlayout_right_buffer"
     lct:columnCount="4"
     lct:rowCount="12" >
 
@@ -24,6 +26,7 @@
     <TextView
         android:id="@+id/local_date_tv"
         lct:layout_columnSpan="2"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -36,6 +39,7 @@
     <TextView
         android:id="@+id/utc_date_tv"
         lct:layout_columnSpan="2"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -48,6 +52,7 @@
     <TextView
         android:id="@+id/moon_age_tv"
         lct:layout_columnSpan="2"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -60,6 +65,7 @@
     <TextView
         android:id="@+id/moon_phase_tv"
         lct:layout_columnSpan="2"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -72,6 +78,7 @@
     <TextView
         android:id="@+id/moon_illum_tv"
         lct:layout_columnSpan="2"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -84,6 +91,7 @@
     <TextView
         android:id="@+id/moon_colong_tv"
         lct:layout_columnSpan="2"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -112,6 +120,7 @@
         android:id="@+id/new_moon_tv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_vertical"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -126,6 +135,7 @@
         android:id="@+id/fq_moon_tv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_vertical"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -140,6 +150,7 @@
         android:id="@+id/full_moon_tv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_vertical"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -154,6 +165,7 @@
         android:id="@+id/tq_moon_tv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_vertical"
+        android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
  
