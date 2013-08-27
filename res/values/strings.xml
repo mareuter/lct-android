@@ -6,12 +6,12 @@
     <string name="lunar2_club_tab">Lunar II Club</string>
     <!-- Ephemeris page strings -->
     <string name="eph_last_obs_text">Last Observation</string>
-    <string name="eph_local_date_text">Date</string>
-    <string name="eph_utc_date_text">Date (UTC)</string>
-    <string name="eph_moon_age_text">Age</string>
-    <string name="eph_moon_phase_text">Phase</string>
-    <string name="eph_moon_illum_text">Illumination</string>
-    <string name="eph_moon_colong_text">Colongitude</string>
+    <string name="eph_local_date_label">Date</string>
+    <string name="eph_utc_date_label">Date (UTC)</string>
+    <string name="eph_moon_age_label">Age</string>
+    <string name="eph_moon_phase_label">Phase</string>
+    <string name="eph_moon_illum_label">Illumination</string>
+    <string name="eph_moon_colong_label">Colongitude</string>
     <string name="eph_phase_dates_text">Phase Dates</string>
     <string name="eph_iv_content_descr">Lunar phase indicator.</string>
     <string name="eph_no_text"></string>
