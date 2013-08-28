@@ -110,14 +110,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <ImageView
-        android:id="@+id/new_moon_iv"
+        android:id="@+id/first_phase_iv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_horizontal"
         android:contentDescription="@string/eph_iv_content_descr"
-        android:src="@drawable/ic_new_moon" />
+        android:src="@drawable/ic_blank" />
     
     <TextView
-        android:id="@+id/new_moon_tv"
+        android:id="@+id/first_phase_tv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_vertical"
         android:paddingLeft="@dimen/moon_info_text_left_buffer"
@@ -125,14 +125,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageView
-        android:id="@+id/fq_moon_iv"
+        android:id="@+id/second_phase_iv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_horizontal"
         android:contentDescription="@string/eph_iv_content_descr"
-        android:src="@drawable/ic_fq_moon" />
+        android:src="@drawable/ic_blank" />
     
     <TextView
-        android:id="@+id/fq_moon_tv"
+        android:id="@+id/second_phase_tv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_vertical"
         android:paddingLeft="@dimen/moon_info_text_left_buffer"
@@ -140,14 +140,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
      <ImageView
-        android:id="@+id/full_moon_iv"
+        android:id="@+id/third_phase_iv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_horizontal"
         android:contentDescription="@string/eph_iv_content_descr"
-        android:src="@drawable/ic_full_moon" />
+        android:src="@drawable/ic_blank" />
     
     <TextView
-        android:id="@+id/full_moon_tv"
+        android:id="@+id/third_phase_tv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_vertical"
         android:paddingLeft="@dimen/moon_info_text_left_buffer"
@@ -155,14 +155,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <ImageView
-        android:id="@+id/tq_moon_iv"
+        android:id="@+id/fourth_phase_iv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_horizontal"
         android:contentDescription="@string/eph_iv_content_descr"
-        android:src="@drawable/ic_tq_moon" />
+        android:src="@drawable/ic_blank" />
     
     <TextView
-        android:id="@+id/tq_moon_tv"
+        android:id="@+id/fourth_phase_tv"
         lct:layout_columnSpan="2"
         lct:layout_gravity="center_vertical"
         android:paddingLeft="@dimen/moon_info_text_left_buffer"
