@@ -5,6 +5,7 @@ import com.typeiisoft.lct.features.LunarFeature;
 import com.mhuss.AstroLib.Astro;
 import com.mhuss.AstroLib.AstroDate;
 import com.mhuss.AstroLib.DateOps;
+import com.mhuss.AstroLib.LocationElements;
 import com.mhuss.AstroLib.Lunar;
 import com.mhuss.AstroLib.LunarCalc;
 import com.mhuss.AstroLib.NoInitException;
@@ -37,6 +38,10 @@ public class MoonInfo {
 	private int tzOffset;
 	/** Holder for the selenographic colongitude. */
 	private double colongitude;
+	/** Holder for the libration in latitude */
+	private double liblatitude;
+	/** Holder for the libration in longitude */
+	private double liblongitude;
 	/** Enum containing the lunar phases for integer comparison. */
 	private enum Phase {
 		NM, WAXING_CRESENT, FQ, WAXING_GIBBOUS, FM, WANING_GIBBOUS, TQ,
@@ -90,6 +95,8 @@ public class MoonInfo {
 		this.lunar = new Lunar(this.getJulianCenturies());
 		this.obsInfo = new ObsInfo();
 		this.colongitude = Double.MAX_VALUE;
+		this.liblatitude = Double.MAX_VALUE;
+		this.liblongitude = Double.MAX_VALUE;
 	}
 	
 	/**
@@ -162,6 +169,16 @@ public class MoonInfo {
 		this.getColongitude();
 		Log.i(TAG, "Colongitude calculated = " + Double.toString(this.colongitude));
 		return this.colongitude;
+	}
+	
+	/**
+	 * This function returns the lunar librations in both latitude and longitude.
+	 * @return : The lunar librations array.
+	 */
+	public double[] librations() {
+		this.getLibrations();
+		double[] temp = {this.liblatitude, this.liblongitude};
+		return temp;
 	}
 	
 	/**
@@ -239,6 +256,23 @@ public class MoonInfo {
 	private void getColongitude() {
 		if (Double.MAX_VALUE == this.colongitude) {
 			this.colongitude = LunarCalc.colongitude(this.getJulianCenturies());
+		}
+	}
+
+	/**
+	 * This function obtains the lunar librations in both latitude and longitude.
+	 */
+	private void getLibrations() {
+		if (Double.MAX_VALUE == this.liblatitude && 
+				Double.MAX_VALUE == this.liblongitude) {
+			try {
+				LocationElements le = this.lunar.getTotalLibrations();
+				this.liblatitude = le.getLatitude();
+				this.liblongitude = le.getLongitude();
+			}
+			catch (NoInitException nie) {
+				Log.e(TAG, "Lunar object is not initialized for calculating librations.");
+			}
 		}
 	}
 	
