@@ -156,6 +156,42 @@ public class LunarFeature {
 	}
 	
 	/**
+	 * This function calculated the feature's latitude range. 
+	 * @return : Latitude range (min, max).
+	 */
+	public double[] getLatitudeRange() {
+		double minLat = this.latitude - this.deltaLatitude / 2.0;
+		double maxLat = this.latitude + this.deltaLatitude / 2.0;
+		return this.swapRange(minLat, maxLat);
+	}
+	
+	/**
+	 * This function calculated the feature's longitude range. 
+	 * @return : Longitude range (min, max).
+	 */
+	public double[] getLongitudeRange() {
+		double minLon = this.longitude - this.deltaLongitude / 2.0;
+		double maxLon = this.longitude + this.deltaLongitude / 2.0;
+		return this.swapRange(minLon, maxLon);
+	}
+	
+	/**
+	 * This function swaps the values if they are in the wrong order.
+	 * @param minVal : Minimum value to check.
+	 * @param maxVal : Maximum value to check.
+	 * @return : The values swapped if necessary
+	 */
+	private double[] swapRange(double minVal, double maxVal) {
+		if (minVal > maxVal) {
+			double temp = minVal;
+			minVal = maxVal;
+			maxVal = temp;
+		}
+		double[] vals = {minVal, maxVal};
+		return vals;
+	}
+	
+	/**
 	 * This function creates a string representation of the feature object.
 	 * @return : The feature's string representation.
 	 */
