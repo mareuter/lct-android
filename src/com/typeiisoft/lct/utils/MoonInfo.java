@@ -267,8 +267,10 @@ public class MoonInfo {
 				Double.MAX_VALUE == this.liblongitude) {
 			try {
 				LocationElements le = this.lunar.getTotalLibrations();
-				this.liblatitude = le.getLatitude();
-				this.liblongitude = le.getLongitude();
+				this.liblatitude = Math.toDegrees(le.getLatitude());
+				this.liblongitude = Math.toDegrees(le.getLongitude());
+				Log.i(TAG, "Libration in Latitude = " + this.liblatitude);
+				Log.i(TAG, "Libration in Longitude = " + this.liblongitude);
 			}
 			catch (NoInitException nie) {
 				Log.e(TAG, "Lunar object is not initialized for calculating librations.");
