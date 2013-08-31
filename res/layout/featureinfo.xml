@@ -2,16 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
-    
+    android:layout_marginTop="@dimen/lfi_dialog_layout_top_margin"
+    android:layout_marginBottom="@dimen/lfi_dialog_layout_bottom_margin"
     android:orientation="vertical" >
 
     <TextView
         android:id="@+id/feature_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/lfi_dialog_textviews_left_margin"
         android:text="@string/feature_name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -19,7 +18,7 @@
         android:id="@+id/feature_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/lfi_dialog_textviews_left_margin"
         android:text="@string/feature_type"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -27,7 +26,7 @@
         android:id="@+id/feature_lat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/lfi_dialog_textviews_left_margin"
         android:text="@string/feature_lat"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -35,7 +34,7 @@
         android:id="@+id/feature_lon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/lfi_dialog_textviews_left_margin"
         android:text="@string/feature_lon"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -43,7 +42,7 @@
         android:id="@+id/feature_diameter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/lfi_dialog_textviews_left_margin"
         android:text="@string/feature_diameter"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -51,7 +50,7 @@
         android:id="@+id/feature_quadname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/lfi_dialog_textviews_left_margin"
         android:text="@string/feature_quadname"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -59,7 +58,7 @@
         android:id="@+id/feature_quadcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/lfi_dialog_textviews_left_margin"
         android:text="@string/feature_quadcode"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

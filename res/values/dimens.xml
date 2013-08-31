@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Moon Information tab -->
     <dimen name="moon_info_gridlayout_left_buffer">10dip</dimen>
     <dimen name="moon_info_gridlayout_right_buffer">10dip</dimen>
     <dimen name="moon_info_text_left_buffer">10dip</dimen>
+    <!-- Lunar Club tab title strip -->
+    <dimen name="lc_tab_title_strip_top_padding">4dp</dimen>
+    <dimen name="lc_tab_title_strip_bottom_padding">4dp</dimen>
+    <!-- Lunar Club Special tab horizontal rules -->
+    <dimen name="lc_special_hrule_layout_height">1dp</dimen>
+    <dimen name="lc_special_hrule_top_padding">10dp</dimen>
+    <dimen name="lc_special_hrule_bottom_padding">5dp</dimen>
+    <!-- Lunar feature ListView item -->
+    <dimen name="lv_feature_layout_padding">10sp</dimen>
+    <dimen name="lv_feature_tv_right_padding">15sp</dimen>
+    <!-- Lunar feature information dialog -->
+    <dimen name="lfi_dialog_layout_top_margin">10dp</dimen>
+    <dimen name="lfi_dialog_layout_bottom_margin">10dp</dimen>
+    <dimen name="lfi_dialog_textviews_left_margin">5dp</dimen>
+    <!-- About dialog -->
+    <dimen name="about_dialog_main_tv_top_margin">15dp</dimen>
+    <dimen name="about_dialog_main_tv_bottom_margin">15dp</dimen>
+    <dimen name="about_dialog_scrollview_layout_height">0dip</dimen>
+    <dimen name="about_dialog_sv_textview_bottom_margin">15dp</dimen>
 </resources>
