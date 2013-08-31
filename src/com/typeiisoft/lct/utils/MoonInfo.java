@@ -59,6 +59,10 @@ public class MoonInfo {
 	private static final double FEATURE_CUTOFF = 15D;
 	/** Lunar features to which no selenographic longitude cutoff is applied. */
 	private String[] noCutoffType = {"Mare", "Oceanus"};
+	/** Latitude and/or longitude region where librations makes big effect. */
+	private static final double LIBRATION_ZONE = 80D;
+	/** Theoretical visibility limit for features. */
+	private static final double LUNAR_EDGE = 90D;
 	
 	/**
 	 * This function is the class constructor.
@@ -245,9 +249,69 @@ public class MoonInfo {
 			}
 		}
 		
-		return isVisible;
+		return (isVisible && this.isLibrationOk(feature));
 	}
 
+	/**
+	 * This function determines if feature is effected and possibly obscured 
+	 * by libration.
+	 * @param feature : The lunar feature to check for the libration effect.
+	 * @return : False if libration obscures feature.
+	 */
+	private boolean isLibrationOk(LunarFeature feature) {
+		boolean isLongitudeInZone = Math.abs(feature.getLongitude()) > LIBRATION_ZONE;
+		boolean isLatitudeInZone = Math.abs(feature.getLatitude()) > LIBRATION_ZONE;
+		if (isLongitudeInZone || isLatitudeInZone) {
+			this.getLibrations();
+			if (isLongitudeInZone) {
+				double longitude = feature.getLongitude();
+				double[] longRange = feature.getLongitudeRange();
+				
+				longitude -= this.liblongitude;
+				longRange[0] -= this.liblongitude;
+				longRange[1] -= this.liblongitude;
+				
+				Log.d(TAG, "Adjusted longitude: " + longitude + " ["
+						+ longRange[0] + ", " + longRange[1] + "]");
+				
+				if (longitude < 0) {
+					if (longRange[1] < -LUNAR_EDGE) {
+						return false;
+					}
+				}
+				else {
+					if (longRange[0] > LUNAR_EDGE) {
+						return false;
+					}
+				}
+			}
+			if (isLatitudeInZone) {
+				double latitude = feature.getLatitude();
+				double[] latRange = feature.getLatitudeRange();
+				
+				latitude -= this.liblatitude;
+				latRange[0] -= this.liblatitude;
+				latRange[1] -= this.liblatitude;
+				
+				Log.d(TAG, "Adjusted latitude: " + latitude + " ["
+						+ latRange[0] + ", " + latRange[1] + "]");
+				
+				if (latitude < 0) {
+					if (latRange[1] < -LUNAR_EDGE) {
+						return false;
+					}
+				}
+				else {
+					if (latRange[0] > LUNAR_EDGE) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		return true;
+	}
+	
 	/**
 	 * This function is to set the selenographic colongitude once for a given 
 	 * instance. This will cut down on the number of calculations done by the 
