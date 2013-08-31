@@ -1,5 +1,9 @@
 package com.typeiisoft.lct;
 
+import java.util.Calendar;
+import java.util.Map;
+
+import com.mhuss.AstroLib.Lunar;
 import com.typeiisoft.lct.utils.AppPreferences;
 import com.typeiisoft.lct.utils.MoonInfo;
 import com.typeiisoft.lct.utils.StrFormat;
@@ -10,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -43,17 +48,39 @@ public class MoonInfoFragment extends Fragment {
 		MoonInfo moonInfo = new MoonInfo(appPrefs.getDateTime());
 		Log.i(TAG, "MoonInfo: " + moonInfo.toString());
 		
-		String[] dateTime = StrFormat.dateFormat(moonInfo.getObsLocal()).split(" ", 2);
-		this.appendText(R.id.obsdate_label, dateTime[0]);
-		this.appendText(R.id.obstime_label, dateTime[1]);
-		this.appendText(R.id.moon_phase_label, moonInfo.phase());
+		String[] localDateTime = StrFormat.dateFormatNoSeconds(moonInfo.getObsLocal()).split(" ");
+		this.appendText(R.id.local_date_label_tv, "(" + localDateTime[2] + ")");
+		String localDateStr =  localDateTime[0] + " " + localDateTime[1];
+		this.appendText(R.id.local_date_tv, localDateStr);
+		String[] utcDateTime = StrFormat.dateFormatNoSeconds(moonInfo.getObsUtc()).split(" ");
+		this.appendText(R.id.utc_date_tv, utcDateTime[0] + " " + utcDateTime[1]);
+		this.appendText(R.id.moon_phase_tv, moonInfo.phase());
 		String ageStr = StrFormat.formatDouble(moonInfo.age(), 2) + " days";
-		this.appendText(R.id.moon_age_label, ageStr);
+		this.appendText(R.id.moon_age_tv, ageStr);
 		String illumStr = StrFormat.formatDouble(moonInfo.illumation() * 100.0, 1) + "%";
-		this.appendText(R.id.moon_illum_label, illumStr);
+		this.appendText(R.id.moon_illum_tv, illumStr);
 		String colongStr = StrFormat.dmsFromDd(moonInfo.colong(), false);
-		this.appendText(R.id.moon_colong_label, colongStr);
+		this.appendText(R.id.moon_colong_tv, colongStr);
 
+		// Find the dates for next four lunar phases.
+		Map<Calendar, Integer> phases = moonInfo.findNextFourPhases();
+		
+		int[] phaseTextViews = {R.id.first_phase_tv, R.id.second_phase_tv,
+				R.id.third_phase_tv, R.id.fourth_phase_tv};
+
+		int[] phaseImageViews = {R.id.first_phase_iv, R.id.second_phase_iv,
+				R.id.third_phase_iv, R.id.fourth_phase_iv};
+		
+		// Calendar keys are sorted in most recent first. Need to reverse it.
+		int counter = 3;
+		for (Map.Entry<Calendar, Integer> entry : phases.entrySet()) {
+			Calendar cal = entry.getKey();
+			Integer phase = entry.getValue();
+			this.setPhaseIcon(phaseImageViews[counter], this.getPhaseIcon(phase));
+			this.appendText(phaseTextViews[counter], StrFormat.dateFormatNoSeconds(cal));
+			counter -= 1;
+		}
+		
     	return this.view;
     }
 
@@ -68,5 +95,44 @@ public class MoonInfoFragment extends Fragment {
 		String cur_text = tv.getText().toString();
 		StringBuffer buff = new StringBuffer(cur_text).append(" ").append(more_text);
 		tv.setText(buff);
+	}
+	
+	/**
+	 * This function gets the phase icon drawable to the corresponding value.
+	 * @param i : The phase icon value.
+	 * @return : The corresponding drawable.
+	 */
+	private int getPhaseIcon(Integer i) {
+		int phase = i.intValue();
+		int drawable;
+		switch (phase) {
+		case Lunar.NEW:
+			drawable = R.drawable.ic_new_moon;
+			break;
+		case Lunar.Q1:
+			drawable = R.drawable.ic_fq_moon;
+			break;
+		case Lunar.FULL:
+			drawable = R.drawable.ic_full_moon;
+			break;
+		case Lunar.Q3:
+			drawable = R.drawable.ic_tq_moon;
+			break;
+		default:
+			// Bad stuff happened to get here.
+			drawable = -1;
+			break;
+		}
+		return drawable;
+	}
+	
+	/**
+	 * This function sets the drawable to the given ImageView.
+	 * @param layoutResId : The ImageView to set the drawable to.
+	 * @param drawable : The drawable to use.
+	 */
+	private void setPhaseIcon(int layoutResId, int drawable) {
+		ImageView iv = (ImageView)this.view.findViewById(layoutResId);
+		iv.setImageResource(drawable);
 	}
 }

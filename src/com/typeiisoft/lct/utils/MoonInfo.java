@@ -10,9 +10,15 @@ import com.mhuss.AstroLib.LunarCalc;
 import com.mhuss.AstroLib.NoInitException;
 import com.mhuss.AstroLib.ObsInfo;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 /**
@@ -46,6 +52,8 @@ public class MoonInfo {
 	private String[] phaseNames = {"New Moon", "Waxing Cresent", 
 			"First Quarter", "Waxing Gibbous", "Full Moon", "Waning Gibbous",
 			"Third Quarter", "Waning Cresent"};
+	/** Array of lunar phase values. */
+	private int[] phaseValues = {Lunar.NEW, Lunar.Q1, Lunar.FULL, Lunar.Q3};
 	/** Enum containing the time of lunar day for integer comparison. */
 	private enum TimeOfDay {
 		MORNING, EVENING;
@@ -384,6 +392,33 @@ public class MoonInfo {
 		AstroDate nmDate = this.findPreviousPhase(Lunar.NEW);
 		return this.fixTime(nmDate);
 	}
+
+	/**
+	 * This function returns the local date of the previous full Moon.
+	 * @return : The date of the previous full Moon.
+	 */
+	public Calendar previousFullMoon() {
+		AstroDate fmDate = this.findPreviousPhase(Lunar.FULL);
+		return this.fixTime(fmDate);
+	}
+
+	/**
+	 * This function returns the local date of the previous first quarter Moon.
+	 * @return : The date of the previous first quarter Moon.
+	 */
+	public Calendar previousFirstQuarterMoon() {
+		AstroDate fqmDate = this.findPreviousPhase(Lunar.Q1);
+		return this.fixTime(fqmDate);
+	}
+	
+	/**
+	 * This function returns the local date of the previous third quarter Moon.
+	 * @return : The date of the previous third quarter Moon.
+	 */
+	public Calendar previousThirdQuarterMoon() {
+		AstroDate tqmDate = this.findPreviousPhase(Lunar.Q3);
+		return this.fixTime(tqmDate);
+	}
 	
 	/**
 	 * This function returns the local date of the next new Moon.
@@ -401,6 +436,24 @@ public class MoonInfo {
 	public Calendar nextFullMoon() {
 		AstroDate fmDate = this.findNextPhase(Lunar.FULL);
 		return this.fixTime(fmDate);
+	}
+	
+	/**
+	 * This function returns the local date of the next first quarter Moon.
+	 * @return : The date of the next first quarter Moon.
+	 */
+	public Calendar nextFirstQuarterMoon() {
+		AstroDate fqmDate = this.findNextPhase(Lunar.Q1);
+		return this.fixTime(fqmDate);
+	}
+
+	/**
+	 * This function returns the local date of the next third quarter Moon.
+	 * @return : The date of the next third quarter Moon.
+	 */
+	public Calendar nextThirdQuarterMoon() {
+		AstroDate tqmDate = this.findNextPhase(Lunar.Q3);
+		return this.fixTime(tqmDate);
 	}
 	
 	/**
@@ -445,6 +498,51 @@ public class MoonInfo {
 			phaseDate = new AstroDate(date);
 		}
 		return phaseDate;
+	}
+	
+	/**
+	 * This function finds the calendar date of the requested lunar phase.
+	 * @param phase : The value of the lunar phase.
+	 * @return : The calendar date of the lunar phase.
+	 */
+	private Calendar findPhase(int phase) {
+		double date = Lunar.getPhase(DateOps.calendarToDay(this.obsDate.toGCalendar()), 
+				phase);
+		AstroDate phaseDate = new AstroDate(date);
+		GregorianCalendar c = phaseDate.toGCalendar();
+		c.add(Calendar.HOUR_OF_DAY, this.tzOffset);
+		return c;
+	}
+	
+	/**
+	 * This function finds the dates for the next four lunar phases. A map is created that 
+	 * contains the calendar date of the phase as the map key and an integer values for the 
+	 * phases as the map value.
+	 * @return : A map containing the information.
+	 */
+	@SuppressLint("UseSparseArrays")
+	public Map<Calendar, Integer> findNextFourPhases() {
+		Map<Calendar, Integer> phases = new HashMap<Calendar, Integer>();
+		List<Integer> indices = new ArrayList<Integer>();
+		for (int i = 0; i < 4; i++) {
+			Calendar cal = this.findPhase(phaseValues[i]);
+			if (cal.before(this.obsLocal)) {
+				indices.add(Integer.valueOf(i));
+				continue;
+			}
+			else {
+				phases.put(cal, Integer.valueOf(i));
+			}
+		}
+		// If the indices list is not empty, need to fill with next phases.
+		Iterator<Integer> lit = indices.iterator();
+		while (lit.hasNext()) {
+			Integer phase = lit.next();
+			AstroDate ad = this.findNextPhase(phase.intValue());
+			Calendar cal = this.fixTime(ad);
+			phases.put(cal, phase);
+		}
+		return phases;
 	}
 	
 	/**

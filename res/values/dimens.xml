@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="moon_info_gridlayout_left_buffer">10dip</dimen>
+    <dimen name="moon_info_gridlayout_right_buffer">10dip</dimen>
+    <dimen name="moon_info_text_left_buffer">10dip</dimen>
+</resources>

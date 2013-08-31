@@ -4,12 +4,17 @@
     <string name="moon_info_tab">Moon Info</string>
     <string name="lunar_club_tab">Lunar Club</string>
     <string name="lunar2_club_tab">Lunar II Club</string>
-    <string name="date_label_text">Current Date:</string>
-    <string name="time_label_text">Current Time:</string>
-    <string name="moon_age_text">Moon Age:</string>
-    <string name="moon_phase_text">Moon Phase:</string>
-    <string name="moon_illum_text">Moon Illumination:</string>
-    <string name="moon_colong_text">Moon Colongitude:</string>
+    <!-- Ephemeris page strings -->
+    <string name="eph_last_obs_text">Last Observation</string>
+    <string name="eph_local_date_label">Date</string>
+    <string name="eph_utc_date_label">Date (UTC)</string>
+    <string name="eph_moon_age_label">Age</string>
+    <string name="eph_moon_phase_label">Phase</string>
+    <string name="eph_moon_illum_label">Illumination</string>
+    <string name="eph_moon_colong_label">Colongitude</string>
+    <string name="eph_phase_dates_text">Next Phase Dates</string>
+    <string name="eph_iv_content_descr">Lunar phase indicator.</string>
+    <string name="eph_no_text"></string>
     <!-- Lunar Club Special page strings -->
     <string name="lcsp_time_from_nm_text">Time from New Moon:</string>
     <string name="lcsp_cresent_waxing_text">Cresent Moon, Waxing</string>

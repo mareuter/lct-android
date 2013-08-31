@@ -4,15 +4,13 @@
     android:id="@+id/GridLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="horizontal"
-    android:paddingLeft="@dimen/moon_info_gridlayout_left_buffer"
-    android:paddingRight="@dimen/moon_info_gridlayout_right_buffer"
-    lct:columnCount="4"
-    lct:rowCount="12" >
+    lct:orientation="horizontal"
+    lct:columnCount="8"
+    lct:rowCount="7" >
 
     <TextView
         android:id="@+id/last_obs_tv"
-        lct:layout_columnSpan="4"
+        lct:layout_columnSpan="8"
         lct:layout_gravity="center"
         android:text="@string/eph_last_obs_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -25,6 +23,8 @@
 
     <TextView
         android:id="@+id/local_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         lct:layout_columnSpan="2"
         android:paddingLeft="@dimen/moon_info_text_left_buffer"
         android:text="@string/eph_no_text"
@@ -97,14 +97,14 @@
     
     <View
         android:layout_height="1dp"
-        lct:layout_columnSpan="4"
+        lct:layout_columnSpan="8"
         android:background="@color/horizontal_rule"
         android:paddingBottom="5dp"
         android:paddingTop="10dp" />
    
    <TextView
         android:id="@+id/phase_dates_tv"
-        lct:layout_columnSpan="4"
+        lct:layout_columnSpan="8"
         lct:layout_gravity="center"
         android:text="@string/eph_phase_dates_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -171,6 +171,6 @@
  
     <!-- Empty view to stop last row from filling to bottom of screen -->
     <View
-        lct:layout_columnSpan="4" />
-
+        lct:layout_columnSpan="8" />
+    
 </android.support.v7.widget.GridLayout>
