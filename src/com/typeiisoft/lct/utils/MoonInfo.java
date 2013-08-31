@@ -5,6 +5,7 @@ import com.typeiisoft.lct.features.LunarFeature;
 import com.mhuss.AstroLib.Astro;
 import com.mhuss.AstroLib.AstroDate;
 import com.mhuss.AstroLib.DateOps;
+import com.mhuss.AstroLib.LocationElements;
 import com.mhuss.AstroLib.Lunar;
 import com.mhuss.AstroLib.LunarCalc;
 import com.mhuss.AstroLib.NoInitException;
@@ -43,6 +44,10 @@ public class MoonInfo {
 	private int tzOffset;
 	/** Holder for the selenographic colongitude. */
 	private double colongitude;
+	/** Holder for the libration in latitude */
+	private double liblatitude;
+	/** Holder for the libration in longitude */
+	private double liblongitude;
 	/** Enum containing the lunar phases for integer comparison. */
 	private enum Phase {
 		NM, WAXING_CRESENT, FQ, WAXING_GIBBOUS, FM, WANING_GIBBOUS, TQ,
@@ -64,6 +69,10 @@ public class MoonInfo {
 	private String[] noCutoffType = {"Mare", "Oceanus"};
 	/** Pi divided by four */
 	private static final double PI_OVER_FOUR = Math.PI / 4D;
+	/** Latitude and/or longitude region where librations makes big effect. */
+	private static final double LIBRATION_ZONE = 80D;
+	/** Theoretical visibility limit for features. */
+	private static final double LUNAR_EDGE = 90D;
 	
 	/**
 	 * This function is the class constructor.
@@ -100,6 +109,8 @@ public class MoonInfo {
 		this.lunar = new Lunar(this.getJulianCenturies());
 		this.obsInfo = new ObsInfo();
 		this.colongitude = Double.MAX_VALUE;
+		this.liblatitude = Double.MAX_VALUE;
+		this.liblongitude = Double.MAX_VALUE;
 	}
 	
 	/**
@@ -189,6 +200,16 @@ public class MoonInfo {
 		}
 		return phaseAngle;
 	}
+
+	/**
+	 * This function returns the lunar librations in both latitude and longitude.
+	 * @return : The lunar librations array.
+	 */
+	public double[] librations() {
+		this.getLibrations();
+		double[] temp = {this.liblatitude, this.liblongitude};
+		return temp;
+	}
 	
 	/**
 	 * This function returns the phase of the Moon as a string.
@@ -254,9 +275,69 @@ public class MoonInfo {
 			}
 		}
 		
-		return isVisible;
+		return (isVisible && this.isLibrationOk(feature));
 	}
 
+	/**
+	 * This function determines if feature is effected and possibly obscured 
+	 * by libration.
+	 * @param feature : The lunar feature to check for the libration effect.
+	 * @return : False if libration obscures feature.
+	 */
+	private boolean isLibrationOk(LunarFeature feature) {
+		boolean isLongitudeInZone = Math.abs(feature.getLongitude()) > LIBRATION_ZONE;
+		boolean isLatitudeInZone = Math.abs(feature.getLatitude()) > LIBRATION_ZONE;
+		if (isLongitudeInZone || isLatitudeInZone) {
+			this.getLibrations();
+			if (isLongitudeInZone) {
+				double longitude = feature.getLongitude();
+				double[] longRange = feature.getLongitudeRange();
+				
+				longitude -= this.liblongitude;
+				longRange[0] -= this.liblongitude;
+				longRange[1] -= this.liblongitude;
+				
+				Log.d(TAG, "Adjusted longitude: " + longitude + " ["
+						+ longRange[0] + ", " + longRange[1] + "]");
+				
+				if (longitude < 0) {
+					if (longRange[1] < -LUNAR_EDGE) {
+						return false;
+					}
+				}
+				else {
+					if (longRange[0] > LUNAR_EDGE) {
+						return false;
+					}
+				}
+			}
+			if (isLatitudeInZone) {
+				double latitude = feature.getLatitude();
+				double[] latRange = feature.getLatitudeRange();
+				
+				latitude -= this.liblatitude;
+				latRange[0] -= this.liblatitude;
+				latRange[1] -= this.liblatitude;
+				
+				Log.d(TAG, "Adjusted latitude: " + latitude + " ["
+						+ latRange[0] + ", " + latRange[1] + "]");
+				
+				if (latitude < 0) {
+					if (latRange[1] < -LUNAR_EDGE) {
+						return false;
+					}
+				}
+				else {
+					if (latRange[0] > LUNAR_EDGE) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		return true;
+	}
+	
 	/**
 	 * This function is to set the selenographic colongitude once for a given 
 	 * instance. This will cut down on the number of calculations done by the 
@@ -265,6 +346,25 @@ public class MoonInfo {
 	private void getColongitude() {
 		if (Double.MAX_VALUE == this.colongitude) {
 			this.colongitude = LunarCalc.colongitude(this.getJulianCenturies());
+		}
+	}
+
+	/**
+	 * This function obtains the lunar librations in both latitude and longitude.
+	 */
+	private void getLibrations() {
+		if (Double.MAX_VALUE == this.liblatitude && 
+				Double.MAX_VALUE == this.liblongitude) {
+			try {
+				LocationElements le = this.lunar.getTotalLibrations();
+				this.liblatitude = Math.toDegrees(le.getLatitude());
+				this.liblongitude = Math.toDegrees(le.getLongitude());
+				Log.i(TAG, "Libration in Latitude = " + this.liblatitude);
+				Log.i(TAG, "Libration in Longitude = " + this.liblongitude);
+			}
+			catch (NoInitException nie) {
+				Log.e(TAG, "Lunar object is not initialized for calculating librations.");
+			}
 		}
 	}
 	
