@@ -96,11 +96,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <View
-        android:layout_height="1dp"
+        android:layout_height="@dimen/hrule_layout_height"
         lct:layout_columnSpan="8"
         android:background="@color/horizontal_rule"
-        android:paddingBottom="5dp"
-        android:paddingTop="10dp" />
+        android:paddingBottom="@dimen/hrule_bottom_padding"
+        android:paddingTop="@dimen/hrule_top_padding" />
    
    <TextView
         android:id="@+id/phase_dates_tv"

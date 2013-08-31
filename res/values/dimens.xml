@@ -7,10 +7,10 @@
     <!-- Lunar Club tab title strip -->
     <dimen name="lc_tab_title_strip_top_padding">4dp</dimen>
     <dimen name="lc_tab_title_strip_bottom_padding">4dp</dimen>
-    <!-- Lunar Club Special tab horizontal rules -->
-    <dimen name="lc_special_hrule_layout_height">1dp</dimen>
-    <dimen name="lc_special_hrule_top_padding">10dp</dimen>
-    <dimen name="lc_special_hrule_bottom_padding">5dp</dimen>
+    <!-- All tab horizontal rules -->
+    <dimen name="hrule_layout_height">1dp</dimen>
+    <dimen name="hrule_top_padding">10dp</dimen>
+    <dimen name="hrule_bottom_padding">5dp</dimen>
     <!-- Lunar feature ListView item -->
     <dimen name="lv_feature_layout_padding">10sp</dimen>
     <dimen name="lv_feature_tv_right_padding">15sp</dimen>

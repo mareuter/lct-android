@@ -46,9 +46,9 @@
 
     <View
         lct:layout_columnSpan="2"
-        android:layout_height="@dimen/lc_special_hrule_layout_height"
-        android:paddingTop="@dimen/lc_special_hrule_top_padding"
-        android:paddingBottom="@dimen/lc_special_hrule_bottom_padding"
+        android:layout_height="@dimen/hrule_layout_height"
+        android:paddingTop="@dimen/hrule_top_padding"
+        android:paddingBottom="@dimen/hrule_bottom_padding"
         android:background="@color/horizontal_rule"/>
         
     <TextView
@@ -83,9 +83,9 @@
 
     <View
         lct:layout_columnSpan="2"
-        android:layout_height="@dimen/lc_special_hrule_layout_height"
-        android:paddingTop="@dimen/lc_special_hrule_top_padding"
-        android:paddingBottom="@dimen/lc_special_hrule_bottom_padding"
+        android:layout_height="@dimen/hrule_layout_height"
+        android:paddingTop="@dimen/hrule_top_padding"
+        android:paddingBottom="@dimen/hrule_bottom_padding"
         android:background="@color/horizontal_rule"/>
 
    <TextView
