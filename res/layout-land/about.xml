@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge>
-    <include layout="@layout/about" />
-</merge>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/about_program_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/about_dialog_main_tv_top_margin"
+        android:layout_marginBottom="@dimen/about_dialog_main_tv_bottom_margin"
+        android:layout_gravity="center"
+        android:textColor="@color/dialog"
+        android:text="@string/about_program" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/about_dialog_scrollview_layout_height"
+        android:layout_weight="0.52" >
+
+        <TextView
+             android:id="@+id/about_content"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="@dimen/about_dialog_sv_textview_bottom_margin"
+             android:text="@string/about_text" />
+        
+    </ScrollView>
+
+</LinearLayout>
