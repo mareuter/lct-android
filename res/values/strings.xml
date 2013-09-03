@@ -51,4 +51,11 @@
         </p>
     </string>
     <string name="empty">No features currently visible!</string>
+    <!-- Date/Time setting dialog strings -->
+    <string name="datetime_label">Set Date/Time</string>
+    <string name="datetime_shortcut">d</string>
+    <string name="datetime_title">Set the Date and Time</string>
+    <string name="datetime_set_button_label">Set</string>
+    <string name="datetime_now_button_label">Now!</string>
+    <string name="datetime_cancel_button_label">Cancel</string>
 </resources>

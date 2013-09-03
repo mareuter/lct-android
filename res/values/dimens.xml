@@ -23,4 +23,7 @@
     <dimen name="about_dialog_main_tv_bottom_margin">15dp</dimen>
     <dimen name="about_dialog_scrollview_layout_height">0dp</dimen>
     <dimen name="about_dialog_sv_textview_bottom_margin">15dp</dimen>
+    <!-- Date/Time setter dialog -->
+    <dimen name="datetime_datepicker_layout_height">140dp</dimen>
+    <dimen name="datetime_timepicket_layout_height">140dp</dimen>
 </resources>

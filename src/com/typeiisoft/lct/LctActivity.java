@@ -136,6 +136,10 @@ public class LctActivity extends FragmentActivity {
     		DialogFragment newFragment = new AboutDialogFragment();
     		newFragment.show(this.getSupportFragmentManager(), "about");
     		return true;
+    	case R.id.datetime:
+    		DialogFragment dateFragment = new DateTimeDialogFragment();
+    		dateFragment.show(this.getSupportFragmentManager(), "datetime");
+    		return true;
     	default:
     		return super.onOptionsItemSelected(item);
     	}
