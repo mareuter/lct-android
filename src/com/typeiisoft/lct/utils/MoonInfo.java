@@ -59,6 +59,8 @@ public class MoonInfo {
 			"Third Quarter", "Waning Cresent"};
 	/** Array of lunar phase values. */
 	private int[] phaseValues = {Lunar.NEW, Lunar.Q1, Lunar.FULL, Lunar.Q3};
+	/** Array of phase boundaries based on illuminated fraction. */
+	private double[] phaseBounds = {0.005, 0.49, 0.51, 0.99};
 	/** Enum containing the time of lunar day for integer comparison. */
 	private enum TimeOfDay {
 		MORNING, EVENING;
@@ -391,10 +393,10 @@ public class MoonInfo {
 		double illum = this.illumation();
 		double phaseAngle = this.phaseAngle();
 		double sinPhaseAngle = Math.sin(phaseAngle);
-		if (illum < 0.02) {
+		if (illum < phaseBounds[0]) {
 			return Phase.NM;
 		}
-		if (0.02 <= illum && illum <= 0.49) {
+		if (phaseBounds[0] <= illum && illum <= phaseBounds[1]) {
 			if (sinPhaseAngle > 0.0) {
 				return Phase.WAXING_CRESENT;
 			}
@@ -402,7 +404,7 @@ public class MoonInfo {
 				return Phase.WANING_CRESENT;
 			}
 		}
-		if (0.49 < illum && illum < 0.51) {
+		if (phaseBounds[1] < illum && illum < phaseBounds[2]) {
 			if (sinPhaseAngle > 0.0) {
 				return Phase.FQ;
 			}
@@ -410,7 +412,7 @@ public class MoonInfo {
 				return Phase.TQ;
 			}
 		}
-		if (0.51 <= illum && illum <= 0.99) {
+		if (phaseBounds[2] <= illum && illum <= phaseBounds[3]) {
 			if (sinPhaseAngle > 0.0) {
 				return Phase.WAXING_GIBBOUS;
 			}
@@ -418,7 +420,7 @@ public class MoonInfo {
 				return Phase.WANING_GIBBOUS;
 			}
 		}
-		if (illum > 0.99) {
+		if (illum > phaseBounds[3]) {
 			return Phase.FM;
 		}
 		// Shouldn't make it here
