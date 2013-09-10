@@ -69,8 +69,6 @@ public class MoonInfo {
 	private static final double FEATURE_CUTOFF = 15D;
 	/** Lunar features to which no selenographic longitude cutoff is applied. */
 	private String[] noCutoffType = {"Mare", "Oceanus"};
-	/** Pi divided by four */
-	private static final double PI_OVER_FOUR = Math.PI / 4D;
 	/** Latitude and/or longitude region where librations makes big effect. */
 	private static final double LIBRATION_ZONE = 80D;
 	/** Theoretical visibility limit for features. */
@@ -459,10 +457,10 @@ public class MoonInfo {
 		this.getColongitude();
 		double phaseAngle = this.phaseAngle();
 		double sinPhaseAngle = Math.sin(phaseAngle);
-		if (phaseAngle <= Astro.PI_OVER_TWO && phaseAngle > PI_OVER_FOUR) {
+		if (phaseAngle <= Math.PI && phaseAngle > Astro.PI_OVER_TWO) {
 			return 360.0 - this.colongitude;
 		}
-		if (phaseAngle <= PI_OVER_FOUR && phaseAngle > 0.0) {
+		if (phaseAngle <= Astro.PI_OVER_TWO && phaseAngle > 0.0) {
 			return -1.0 * this.colongitude;
 		}
 		if (sinPhaseAngle < 0.0 || phaseAngle == 0.0 || phaseAngle == Astro.TWO_PI) {
