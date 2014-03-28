@@ -570,7 +570,7 @@ public class MoonInfo {
 			// Roll date back by Lunar month
 			Calendar cal = this.obsDate.toGCalendar();
 			cal.add(Calendar.DAY_OF_MONTH, 
-					-1*(int)(LunarCalc.SYNODIC_MONTH+0.5));
+					-1*(int)(LunarCalc.SYNODIC_MONTH));
 			Log.d(TAG, "Previous phase date to use: " + StrFormat.dateFormat(cal));
 			date = Lunar.getPhase(DateOps.calendarToDay(cal), phase);
 			phaseDate = new AstroDate(date);
@@ -592,7 +592,7 @@ public class MoonInfo {
 			// Push date out by Lunar month
 			Calendar cal = this.obsDate.toGCalendar();
 			cal.add(Calendar.DAY_OF_MONTH, 
-					(int)(LunarCalc.SYNODIC_MONTH+0.5));
+					(int)(LunarCalc.SYNODIC_MONTH));
 			Log.d(TAG, "Next phase date to use: " + StrFormat.dateFormat(cal));
 			date = Lunar.getPhase(DateOps.calendarToDay(cal), phase);
 			phaseDate = new AstroDate(date);
